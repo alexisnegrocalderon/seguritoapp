@@ -431,8 +431,8 @@ function PlanCard({ p }: { p: { name: string; price: string; period: string; des
           </li>
         ))}
       </ul>
-      <a href="#descargar" className={`mt-7 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-all ${p.popular ? "text-white hover:scale-[1.02]" : "bg-foreground text-background hover:scale-[1.02]"}`}
-        style={p.popular ? { background: "var(--brand-orange)" } : undefined}>
+      <a href="#descargar" className={`mt-7 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02]`}
+        style={{ background: p.popular ? "var(--brand-orange)" : "var(--brand-blue)" }}>
         {p.cta}
       </a>
     </div>
