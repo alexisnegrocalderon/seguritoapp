@@ -73,8 +73,7 @@ function Nav() {
           <a href="https://instagram.com/seguritoapp" target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-[var(--brand-orange)] hover:text-[var(--brand-orange)]" aria-label="Instagram">
             <Instagram className="h-4 w-4" />
           </a>
-          <a href="#planes" className="text-sm font-semibold text-foreground hover:text-primary">Iniciar sesión</a>
-          <a href="#descargar" className="rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]" style={{ background: "var(--brand-orange)" }}>
+          <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className="rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]" style={{ background: "var(--brand-orange)" }}>
             Empezar gratis
           </a>
         </div>
@@ -93,7 +92,7 @@ function Nav() {
                 {l.label}
               </a>
             ))}
-            <a href="#descargar" className="mt-2 block rounded-full px-4 py-2.5 text-center text-sm font-semibold text-white" style={{ background: "var(--brand-orange)" }}>
+            <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className="mt-2 block rounded-full px-4 py-2.5 text-center text-sm font-semibold text-white" style={{ background: "var(--brand-orange)" }}>
               Empezar gratis
             </a>
           </div>
@@ -434,7 +433,7 @@ function PlanCard({ p }: { p: { name: string; price: string; period: string; des
           </li>
         ))}
       </ul>
-      <a href="#descargar" className={`mt-7 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02]`}
+      <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className={`mt-7 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02]`}
         style={{ background: p.popular ? "var(--brand-orange)" : "var(--brand-blue)" }}>
         {p.cta}
       </a>
