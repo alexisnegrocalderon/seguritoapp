@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   Shield, FileCheck, Bell, BarChart3, Cloud, Lock,
   Smartphone, ClipboardList, FileText, Check, Apple,
-  Mail, MapPin, Instagram, ChevronDown,
+  Mail, Instagram, ChevronDown,
   Zap, Award, Building2,
 
 } from "lucide-react";
@@ -540,7 +540,6 @@ function Footer() {
             <h4 className="font-display text-sm font-bold uppercase tracking-wider">Contacto</h4>
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
               <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> ventas@seguritoapp.com</li>
-              <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Santiago, Chile</li>
             </ul>
           </div>
         </div>
