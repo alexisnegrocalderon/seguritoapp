@@ -486,7 +486,7 @@ function CTA() {
               Únete a cientos de prevencionistas que ya digitalizaron su gestión con SeguritoApp.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href="#" className="inline-flex items-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-foreground transition-transform hover:scale-[1.02]">
+              <a href="#" className="inline-flex items-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-[oklch(0.16_0.04_260)] transition-transform hover:scale-[1.02]">
                 <Apple className="h-6 w-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-60">Descarga en</div>
