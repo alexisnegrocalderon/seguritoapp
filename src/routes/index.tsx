@@ -40,6 +40,7 @@ function Landing() {
       <FAQ />
       <CTA />
       <Footer />
+      <FloatingCTA />
     </div>
   );
 }
@@ -563,6 +564,22 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
           <li key={l}><a href="#" className="transition-colors hover:text-foreground">{l}</a></li>
         ))}
       </ul>
+    </div>
+  );
+}
+
+function FloatingCTA() {
+  return (
+    <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-border/60 bg-background/95 backdrop-blur-xl p-3 md:hidden">
+      <a
+        href="https://seguritoapp-467657972843.southamerica-west1.run.app/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex w-full items-center justify-center rounded-full py-3 text-sm font-semibold text-white transition-transform hover:scale-[1.03] active:scale-[0.98]"
+        style={{ background: "var(--brand-orange)" }}
+      >
+        Empezar gratis
+      </a>
     </div>
   );
 }
