@@ -40,6 +40,7 @@ function Landing() {
       <FAQ />
       <CTA />
       <Footer />
+      <FloatingCTA />
     </div>
   );
 }
