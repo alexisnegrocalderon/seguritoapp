@@ -183,8 +183,8 @@ function Hero() {
 function PhoneFrame({ src }: { src: string }) {
   return (
     <div className="relative mx-auto w-full max-w-[320px]">
-      <div className="relative rounded-[2.5rem] border-[10px] border-foreground bg-foreground p-1 shadow-2xl">
-        <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-foreground" />
+      <div className="relative rounded-[2.5rem] border-[10px] p-1 shadow-2xl" style={{ background: "oklch(0.08 0.03 260)", borderColor: "oklch(0.08 0.03 260)" }}>
+        <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full" style={{ background: "oklch(0.08 0.03 260)" }} />
         <div className="overflow-hidden rounded-[2rem]">
           <img src={src} alt="SeguritoApp" className="block w-full" />
         </div>
