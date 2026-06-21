@@ -131,7 +131,7 @@ function Hero() {
               SeguritoApp digitaliza inspecciones, centraliza tu documentación y genera reportes automáticos. Cumple la normativa desde tu celular.
             </p>
             <div id="descargar" className="mt-8 flex flex-wrap gap-3">
-              <a href="#" className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.02] hover:bg-white/10 hover:glow-blue">
+              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.02] hover:bg-white/10 hover:glow-blue">
                 <Apple className="h-6 w-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-70">Descarga en</div>
