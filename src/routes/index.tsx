@@ -3,7 +3,7 @@ import { useState } from "react";
 import {
   Shield, FileCheck, Bell, BarChart3, Cloud, Lock,
   Smartphone, ClipboardList, FileText, Check, Apple,
-  Mail, MapPin, Instagram, ChevronDown,
+  Mail, Instagram, ChevronDown,
   Zap, Award, Building2,
 
 } from "lucide-react";
