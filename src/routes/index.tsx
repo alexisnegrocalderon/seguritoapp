@@ -143,7 +143,7 @@ function Hero() {
               </a>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> 20 días gratis</div>
+              <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> 7 días gratis</div>
               <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> Sin tarjeta</div>
               <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> Soporte en español</div>
             </div>
@@ -373,7 +373,7 @@ function Testimonials() {
 
 function Pricing() {
   const plans = [
-    { name: "Free", price: "$0", period: "para siempre", desc: "Prueba 20 días full, luego restringido.", features: ["1 empresa, 10 trabajadores", "1 PDF por día", "Sin DIEP / DIAT", "Marca de agua"], cta: "Empezar gratis", icon: Shield },
+    { name: "Free", price: "$0", period: "para siempre", desc: "Prueba 7 días full, luego restringido.", features: ["1 empresa, 10 trabajadores", "1 PDF por día", "Sin DIEP / DIAT", "Marca de agua"], cta: "Empezar gratis", icon: Shield },
     { name: "Básico", price: "$9.800", period: "CLP / mes", desc: "Para pequeños equipos y asesores.", features: ["Hasta 2 empresas", "100 trabajadores", "3 PDFs diarios", "Sin DIEP / DIAT"], cta: "Suscribirse", icon: Shield },
     { name: "Avanzado", price: "$14.900", period: "CLP / mes", desc: "Para consultoras en crecimiento.", features: ["Hasta 8 empresas", "500 trabajadores", "10 PDFs diarios", "Módulo DIEP / DIAT"], cta: "Suscribirse", icon: Zap, popular: true },
     { name: "Profesional", price: "$21.650", period: "CLP / mes", desc: "Para grandes operaciones.", features: ["Hasta 15 empresas", "3.000 trabajadores", "20 PDFs diarios", "Módulo DIEP / DIAT"], cta: "Suscribirse", icon: Award },
@@ -441,7 +441,7 @@ function PlanCard({ p }: { p: { name: string; price: string; period: string; des
 
 function FAQ() {
   const items = [
-    { q: "¿Puedo probar la app gratis?", a: "Sí. Tienes 20 días con todas las funcionalidades sin tarjeta de crédito. Luego puedes seguir con el plan Free restringido o pasar a uno de pago." },
+    { q: "¿Puedo probar la app gratis?", a: "Sí. Tienes 7 días con todas las funcionalidades sin tarjeta de crédito. Luego puedes seguir con el plan Free restringido o pasar a uno de pago." },
     { q: "¿La app cumple con la normativa chilena?", a: "Sí. SeguritoApp está diseñada en base a la Ley 16.744, D.S. 594, D.S. 44 y D.S. 67. Genera reportes con validez legal listos para fiscalización." },
     { q: "¿Funciona sin conexión a internet?", a: "Puedes registrar inspecciones y datos en terreno; al recuperar conexión se sincroniza automáticamente con la nube." },
     { q: "¿Cuántas empresas puedo gestionar?", a: "Depende del plan: desde 1 empresa en Free hasta empresas ilimitadas en el plan Corporativo." },
