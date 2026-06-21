@@ -41,6 +41,7 @@ function Landing() {
       <CTA />
       <Footer />
       <FloatingCTA />
+      <FloatingWhatsApp />
     </div>
   );
 }
