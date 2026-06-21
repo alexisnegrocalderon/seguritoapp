@@ -70,6 +70,9 @@ function Nav() {
           ))}
         </nav>
         <div className="hidden items-center gap-3 md:flex">
+          <a href="https://instagram.com/seguritoapp" target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-[var(--brand-orange)] hover:text-[var(--brand-orange)]" aria-label="Instagram">
+            <Instagram className="h-4 w-4" />
+          </a>
           <a href="#planes" className="text-sm font-semibold text-foreground hover:text-primary">Iniciar sesión</a>
           <a href="#descargar" className="rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]" style={{ background: "var(--brand-orange)" }}>
             Empezar gratis
@@ -525,7 +528,10 @@ function Footer() {
               App de prevención de riesgos laborales. Tranquilidad y protección para empresas y profesionales.
             </p>
             <div className="mt-5 flex gap-3">
-              {[Instagram, Linkedin, Facebook].map((Icon, i) => (
+              <a href="https://instagram.com/seguritoapp" target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-[var(--brand-orange)] hover:text-[var(--brand-orange)]" aria-label="Instagram">
+                <Instagram className="h-4 w-4" />
+              </a>
+              {[Linkedin, Facebook].map((Icon, i) => (
                 <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground" aria-label="Red social">
                   <Icon className="h-4 w-4" />
                 </a>
