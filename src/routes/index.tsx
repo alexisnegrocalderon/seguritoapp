@@ -71,7 +71,7 @@ function Nav() {
         </nav>
         <div className="hidden items-center gap-3 md:flex">
           <a href="#planes" className="text-sm font-semibold text-foreground hover:text-primary">Iniciar sesión</a>
-          <a href="#descargar" className="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-transform hover:scale-[1.03]">
+          <a href="#descargar" className="rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]" style={{ background: "var(--brand-orange)" }}>
             Empezar gratis
           </a>
         </div>
@@ -90,7 +90,7 @@ function Nav() {
                 {l.label}
               </a>
             ))}
-            <a href="#descargar" className="mt-2 block rounded-full bg-foreground px-4 py-2.5 text-center text-sm font-semibold text-background">
+            <a href="#descargar" className="mt-2 block rounded-full px-4 py-2.5 text-center text-sm font-semibold text-white" style={{ background: "var(--brand-orange)" }}>
               Empezar gratis
             </a>
           </div>
@@ -127,7 +127,7 @@ function Hero() {
               SeguritoApp digitaliza inspecciones, centraliza tu documentación y genera reportes automáticos. Cumple la normativa desde tu celular.
             </p>
             <div id="descargar" className="mt-8 flex flex-wrap gap-3">
-              <a href="#" className="group inline-flex items-center gap-3 rounded-2xl bg-foreground px-5 py-3.5 text-background transition-all hover:scale-[1.02] hover:glow-blue">
+              <a href="#" className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.02] hover:bg-white/10 hover:glow-blue">
                 <Apple className="h-6 w-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-70">Descarga en</div>
@@ -183,8 +183,8 @@ function Hero() {
 function PhoneFrame({ src }: { src: string }) {
   return (
     <div className="relative mx-auto w-full max-w-[320px]">
-      <div className="relative rounded-[2.5rem] border-[10px] border-foreground bg-foreground p-1 shadow-2xl">
-        <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full bg-foreground" />
+      <div className="relative rounded-[2.5rem] border-[10px] p-1 shadow-2xl" style={{ background: "oklch(0.08 0.03 260)", borderColor: "oklch(0.08 0.03 260)" }}>
+        <div className="absolute left-1/2 top-2 z-10 h-5 w-24 -translate-x-1/2 rounded-full" style={{ background: "oklch(0.08 0.03 260)" }} />
         <div className="overflow-hidden rounded-[2rem]">
           <img src={src} alt="SeguritoApp" className="block w-full" />
         </div>
@@ -355,7 +355,7 @@ function Testimonials() {
                 <span className="text-foreground">"</span>
               </blockquote>
               <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                <div className="grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-background" style={{ background: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
+                <div className="grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white" style={{ background: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
                   {t.a[0]}
                 </div>
                 <div>
@@ -431,8 +431,8 @@ function PlanCard({ p }: { p: { name: string; price: string; period: string; des
           </li>
         ))}
       </ul>
-      <a href="#descargar" className={`mt-7 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold transition-all ${p.popular ? "text-white hover:scale-[1.02]" : "bg-foreground text-background hover:scale-[1.02]"}`}
-        style={p.popular ? { background: "var(--brand-orange)" } : undefined}>
+      <a href="#descargar" className={`mt-7 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02]`}
+        style={{ background: p.popular ? "var(--brand-orange)" : "var(--brand-blue)" }}>
         {p.cta}
       </a>
     </div>
@@ -486,7 +486,7 @@ function CTA() {
               Únete a cientos de prevencionistas que ya digitalizaron su gestión con SeguritoApp.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href="#" className="inline-flex items-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-foreground transition-transform hover:scale-[1.02]">
+              <a href="#" className="inline-flex items-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-[oklch(0.16_0.04_260)] transition-transform hover:scale-[1.02]">
                 <Apple className="h-6 w-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-60">Descarga en</div>
