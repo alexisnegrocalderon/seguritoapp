@@ -3,8 +3,9 @@ import { useState } from "react";
 import {
   Shield, FileCheck, Bell, BarChart3, Cloud, Lock,
   Smartphone, ClipboardList, FileText, Check, Apple,
-  Mail, MapPin, Instagram, Linkedin, Facebook, ChevronDown,
+  Mail, MapPin, Instagram, ChevronDown,
   Zap, Award, Building2,
+
 } from "lucide-react";
 import logo from "@/assets/logo.asset.json";
 import dashboard from "@/assets/app-dashboard.asset.json";
@@ -514,7 +515,7 @@ function Footer() {
   return (
     <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6">
-        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-2">
               <img src={logo.url} alt="SeguritoApp" className="h-10 w-10" />
@@ -530,21 +531,15 @@ function Footer() {
               <a href="https://instagram.com/seguritoapp" target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-[var(--brand-orange)] hover:text-[var(--brand-orange)]" aria-label="Instagram">
                 <Instagram className="h-4 w-4" />
               </a>
-              {[Linkedin, Facebook].map((Icon, i) => (
-                <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-foreground hover:text-foreground" aria-label="Red social">
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
             </div>
           </div>
 
           <FooterCol title="Producto" links={["Beneficios", "Cómo funciona", "Planes", "Descargar"]} />
-          <FooterCol title="Compañía" links={["Sobre nosotros", "Blog", "Contacto", "Términos"]} />
 
           <div>
             <h4 className="font-display text-sm font-bold uppercase tracking-wider">Contacto</h4>
             <ul className="mt-4 space-y-3 text-sm text-muted-foreground">
-              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> hola@seguritoapp.com</li>
+              <li className="flex items-center gap-2"><Mail className="h-4 w-4" /> ventas@seguritoapp.com</li>
               <li className="flex items-center gap-2"><MapPin className="h-4 w-4" /> Santiago, Chile</li>
             </ul>
           </div>
@@ -552,10 +547,11 @@ function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} SeguritoApp. Todos los derechos reservados.</p>
-          <p>Hecho con cuidado para prevencionistas.</p>
+          <p className="flex items-center gap-1.5"><span className="text-base">🇨🇱</span> Chile</p>
         </div>
       </div>
     </footer>
+
   );
 }
 
