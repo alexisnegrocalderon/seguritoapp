@@ -355,7 +355,7 @@ function Testimonials() {
                 <span className="text-foreground">"</span>
               </blockquote>
               <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                <div className="grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-background" style={{ background: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
+                <div className="grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white" style={{ background: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
                   {t.a[0]}
                 </div>
                 <div>
