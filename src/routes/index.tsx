@@ -11,6 +11,7 @@ import logo from "@/assets/logo.asset.json";
 import dashboard from "@/assets/app-dashboard.asset.json";
 import menu from "@/assets/app-menu.asset.json";
 import diep from "@/assets/app-diep.asset.json";
+import { trackPixel, trackPixelCustom } from "@/lib/meta-pixel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -132,14 +133,14 @@ function Hero() {
               SeguritoApp digitaliza inspecciones, centraliza tu documentación y genera reportes automáticos. Cumple la normativa desde tu celular.
             </p>
             <div id="descargar" className="mt-8 flex flex-wrap gap-3">
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.02] hover:bg-white/10 hover:glow-blue">
+              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "AppStore", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.02] hover:bg-white/10 hover:glow-blue">
                 <Apple className="h-6 w-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-70">Descarga en</div>
                   <div className="text-sm font-semibold">App Store</div>
                 </div>
               </a>
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.02] hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
+              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.02] hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
                 <PlayStoreIcon />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-90">Disponible en</div>
@@ -510,14 +511,14 @@ function CTA() {
               Únete a cientos de prevencionistas que ya digitalizaron su gestión con SeguritoApp.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-[oklch(0.16_0.04_260)] transition-transform hover:scale-[1.02]">
+              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "AppStore", location: "cta" })} className="inline-flex items-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-[oklch(0.16_0.04_260)] transition-transform hover:scale-[1.02]">
                 <Apple className="h-6 w-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-60">Descarga en</div>
                   <div className="text-sm font-semibold">App Store</div>
                 </div>
               </a>
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-white transition-transform hover:scale-[1.02]" style={{ background: "var(--brand-orange)" }}>
+              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "cta" })} className="inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-white transition-transform hover:scale-[1.02]" style={{ background: "var(--brand-orange)" }}>
                 <PlayStoreIcon />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-90">Disponible en</div>
@@ -609,6 +610,7 @@ function FloatingWhatsApp() {
       href="https://wa.me/message/MOXJZHJABBC7G1"
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackPixel("Lead", { content_name: "WhatsApp flotante" })}
       aria-label="Contactar por WhatsApp"
       className="fixed bottom-20 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-transform hover:scale-110 active:scale-95 md:bottom-5"
     >

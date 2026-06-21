@@ -1,39 +1,21 @@
-Plan: Transformar la sección "Casos de uso" en "Opiniones de clientes" con 3 testimonios positivos.
+## Meta Pixel + eventos personalizados
 
-Cambios en `src/routes/index.tsx` (sección `Testimonials`):
+**Pixel ID:** `1994241321199042` — se carga en todo el sitio (Opción 1) con eventos personalizados (Opción B).
 
-1. Actualizar el encabezado de sección:
-   - Etiqueta superior: "Casos de uso" → "Opiniones de clientes"
-   - Título: "Lo que viven nuestros usuarios" → "Lo que dicen quienes ya usan SeguritoApp"
+### Cambios
 
-2. Reemplazar el array `quotes` por 3 testimonios reales con:
-   - Calificación de 5 estrellas (visual) al inicio de cada tarjeta.
-   - Cita completa del cliente.
-   - Nombre y cargo.
-   - Color de acento alternado entre naranjo y azul.
+1. **`src/routes/__root.tsx`** — Inyectar el script base del Pixel en `RootShell` (dentro de `<head>`) para que cargue en todas las rutas y dispare `PageView` automáticamente. Incluir el `<noscript>` con la imagen de fallback dentro de `<body>`.
 
-3. Ajustar el diseño de las tarjetas:
-   - Mostrar 5 estrellas (ícono `Star` de lucide-react) en la parte superior de la tarjeta.
-   - Mantener el avatar circular con la inicial del cliente.
-   - Mantener el layout de 3 columnas en desktop y 1 en móvil.
-   - Preservar la animación del último tramo de la cita resaltado con el color de acento.
+2. **`src/lib/meta-pixel.ts`** (nuevo) — Helper tipado `trackPixel(event, params?)` que llama `window.fbq('track', ...)` de forma segura (verifica que exista).
 
-4. Contenido exacto a incorporar:
+3. **`src/routes/index.tsx`** — Disparar eventos personalizados:
+   - **WhatsApp flotante** (`FloatingWhatsApp`, línea 606): `Lead` con `{ content_name: 'WhatsApp flotante' }` al hacer clic.
+   - **Botones App Store** (líneas 139 y 517): `trackCustom('DownloadClick', { store: 'AppStore', location: 'hero'|'cta' })`.
+   - **Botones Google Play** (líneas 146 y 524): `trackCustom('DownloadClick', { store: 'GooglePlay', location: 'hero'|'cta' })`.
 
-   Testimonio 1 — Carlos M., Prevencionista Independiente:
-   "Probé SeguritoApp pensando que sería otra app más. A la primera semana ya tenía mis inspecciones y reportes mucho más ordenados. Hoy no imagino volver al Excel."
-   Ventaja destacada: orden y centralización de inspecciones/reportes.
+### Detalles técnicos
 
-   Testimonio 2 — Fernanda R., Asesora en Prevención de Riesgos:
-   "Lo que más me sorprendió fue el tiempo que ahorré. Antes terminaba mis informes de noche, ahora tengo todo centralizado y puedo enfocarme en lo realmente importante."
-   Ventaja destacada: ahorro de tiempo y centralización.
-
-   Testimonio 3 — Javier P., Consultor en Prevención de Riesgos:
-   "Entré por curiosidad y terminé quedándome. SeguritoApp me dio más control, más tranquilidad y una forma mucho más profesional de gestionar a mis clientes."
-   Ventaja destacada: control, tranquilidad y profesionalismo.
-
-5. Verificación:
-   - Compilar con `bun run build`.
-   - Revisar la sección en vista móvil y desktop para confirmar que las estrellas y el texto se leen bien.
-
-Nota: no se requieren cambios de backend ni nuevas dependencias.
+- El Pixel solo se ejecuta en el cliente; el snippet se inyecta como `<script>` plano dentro del shell SSR — el código original de Meta ya hace `if (f.fbq) return;` por lo que es seguro frente a doble carga.
+- Para tipar `window.fbq`, se agrega `declare global { interface Window { fbq?: (...args: any[]) => void } }` en `meta-pixel.ts`.
+- Los eventos de descarga usan `trackCustom` (no es estándar de Meta), permitiendo segmentar por tienda y ubicación del botón en Ads Manager.
+- No se modifica la lógica de negocio ni el diseño visual — solo se agregan handlers `onClick` que llaman al helper antes de la navegación nativa del enlace.
