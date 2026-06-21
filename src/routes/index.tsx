@@ -547,7 +547,7 @@ function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-border pt-6 text-xs text-muted-foreground sm:flex-row">
           <p>© {new Date().getFullYear()} SeguritoApp. Todos los derechos reservados.</p>
-          <p className="flex items-center gap-1.5"><span className="text-base">🇨🇹</span> Chile</p>
+          <p className="flex items-center gap-1.5"><span className="text-base">🇨🇱</span> Chile</p>
         </div>
       </div>
     </footer>
