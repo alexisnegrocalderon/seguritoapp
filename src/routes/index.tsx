@@ -4,7 +4,7 @@ import {
   Shield, FileCheck, Bell, BarChart3, Cloud, Lock,
   Smartphone, ClipboardList, FileText, Check, Apple,
   Mail, Instagram, ChevronDown,
-  Zap, Award, Building2,
+  Zap, Award, Building2, Star,
 
 } from "lucide-react";
 import logo from "@/assets/logo.asset.json";
