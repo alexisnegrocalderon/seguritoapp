@@ -90,7 +90,7 @@ function Nav() {
                 {l.label}
               </a>
             ))}
-            <a href="#descargar" className="mt-2 block rounded-full bg-foreground px-4 py-2.5 text-center text-sm font-semibold text-background">
+            <a href="#descargar" className="mt-2 block rounded-full px-4 py-2.5 text-center text-sm font-semibold text-white" style={{ background: "var(--brand-orange)" }}>
               Empezar gratis
             </a>
           </div>
