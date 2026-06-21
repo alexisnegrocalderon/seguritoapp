@@ -4,7 +4,7 @@ import {
   Shield, FileCheck, Bell, BarChart3, Cloud, Lock,
   Smartphone, ClipboardList, FileText, Check, Apple,
   Mail, Instagram, ChevronDown,
-  Zap, Award, Building2,
+  Zap, Award, Building2, Star,
 
 } from "lucide-react";
 import logo from "@/assets/logo.asset.json";
@@ -335,30 +335,49 @@ function Mockups() {
 
 function Testimonials() {
   const quotes = [
-    { q: "Una auditoría no debería quitarte el sueño.", a: "Equipo SeguritoApp", role: "Filosofía de producto", accent: "orange" as const },
-    { q: "Pasamos demasiado tiempo ordenando papeles. Y muy poco previniendo riesgos.", a: "Carolina M.", role: "Ingeniera en Prevención", accent: "blue" as const },
-    { q: "La prevención no debería depender de recordar dónde guardaste un archivo.", a: "Rodrigo S.", role: "Asesor PRL", accent: "orange" as const },
+    {
+      q: "Probé SeguritoApp pensando que sería otra app más. A la primera semana ya tenía mis inspecciones y reportes mucho más ordenados. Hoy no imagino volver al Excel.",
+      a: "Carlos M.",
+      role: "Prevencionista Independiente",
+      accent: "orange" as const,
+    },
+    {
+      q: "Lo que más me sorprendió fue el tiempo que ahorré. Antes terminaba mis informes de noche, ahora tengo todo centralizado y puedo enfocarme en lo realmente importante.",
+      a: "Fernanda R.",
+      role: "Asesora en Prevención de Riesgos",
+      accent: "blue" as const,
+    },
+    {
+      q: "Entré por curiosidad y terminé quedándome. SeguritoApp me dio más control, más tranquilidad y una forma mucho más profesional de gestionar a mis clientes.",
+      a: "Javier P.",
+      role: "Consultor en Prevención de Riesgos",
+      accent: "orange" as const,
+    },
   ];
   return (
     <section className="bg-surface py-24 sm:py-32">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--brand-orange)" }}>Casos de uso</span>
+          <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--brand-orange)" }}>Opiniones de clientes</span>
           <h2 className="mt-3 text-balance font-display text-4xl font-bold tracking-tight sm:text-5xl">
-            Lo que viven nuestros usuarios.
+            Lo que dicen quienes ya usan <span className="gradient-text">SeguritoApp.</span>
           </h2>
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {quotes.map((t, i) => (
             <figure key={i} className="flex flex-col justify-between rounded-3xl border border-border bg-card p-8 shadow-sm">
-              <blockquote className="font-display text-xl font-semibold leading-snug tracking-tight">
-                <span className="text-foreground">"</span>
-                {t.q.split(" ").slice(0, -2).join(" ")}{" "}
-                <span style={{ color: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
-                  {t.q.split(" ").slice(-2).join(" ")}
-                </span>
-                <span className="text-foreground">"</span>
-              </blockquote>
+              <div>
+                <div className="flex items-center gap-0.5" aria-label="5 de 5 estrellas">
+                  {Array.from({ length: 5 }).map((_, s) => (
+                    <Star key={s} className="h-4 w-4 fill-current" style={{ color: "var(--brand-orange)" }} />
+                  ))}
+                </div>
+                <blockquote className="mt-4 text-base leading-relaxed text-foreground/90">
+                  <span className="text-foreground">"</span>
+                  {t.q}
+                  <span className="text-foreground">"</span>
+                </blockquote>
+              </div>
               <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
                 <div className="grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white" style={{ background: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
                   {t.a[0]}
