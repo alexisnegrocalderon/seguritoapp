@@ -208,14 +208,14 @@ function PlayStoreIcon() {
 }
 
 function Logos() {
-  const items = ["Mutual", "ACHS", "ISL", "ISO 45001", "D.S. 594", "Ley 16.744"];
+  const items = ["DS 44", "DS 67", "DS 594", "+ley 16.744", "+protocolos MINSAL"];
   return (
-    <section className="border-y border-border bg-surface/50 py-8">
+    <section className="border-y border-border bg-surface/50 py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-          Cumple con normativas y estándares
+        <p className="text-center text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+          Cumplimiento normativo chileno
         </p>
-        <div className="mt-5 flex flex-wrap items-center justify-center gap-x-10 gap-y-3 text-sm font-semibold text-muted-foreground/70">
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-base font-semibold text-muted-foreground/70">
           {items.map((i) => (
             <span key={i} className="font-display">{i}</span>
           ))}
