@@ -71,7 +71,7 @@ function Nav() {
         </nav>
         <div className="hidden items-center gap-3 md:flex">
           <a href="#planes" className="text-sm font-semibold text-foreground hover:text-primary">Iniciar sesión</a>
-          <a href="#descargar" className="rounded-full bg-foreground px-5 py-2.5 text-sm font-semibold text-background transition-transform hover:scale-[1.03]">
+          <a href="#descargar" className="rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]" style={{ background: "var(--brand-orange)" }}>
             Empezar gratis
           </a>
         </div>
