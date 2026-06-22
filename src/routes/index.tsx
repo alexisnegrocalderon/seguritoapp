@@ -413,29 +413,31 @@ function Testimonials() {
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {quotes.map((t, i) => (
-            <figure key={i} className="flex flex-col justify-between rounded-3xl border border-border bg-card p-8 shadow-sm">
-              <div>
-                <div className="flex items-center gap-0.5" aria-label="5 de 5 estrellas">
-                  {Array.from({ length: 5 }).map((_, s) => (
-                    <Star key={s} className="h-4 w-4 fill-current" style={{ color: "var(--brand-orange)" }} />
-                  ))}
-                </div>
-                <blockquote className="mt-4 text-base leading-relaxed text-foreground/90">
-                  <span className="text-foreground">"</span>
-                  {t.q}
-                  <span className="text-foreground">"</span>
-                </blockquote>
-              </div>
-              <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                <div className="grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white" style={{ background: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
-                  {t.a[0]}
-                </div>
+            <Reveal key={i} delay={i * 100}>
+              <figure className="group flex h-full flex-col justify-between rounded-3xl border border-border bg-card p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-foreground/25 hover:shadow-2xl">
                 <div>
-                  <div className="text-sm font-semibold">{t.a}</div>
-                  <div className="text-xs text-muted-foreground">{t.role}</div>
+                  <div className="flex items-center gap-0.5" aria-label="5 de 5 estrellas">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <Star key={s} className="h-4 w-4 fill-current transition-transform duration-500 group-hover:scale-110" style={{ color: "var(--brand-orange)", transitionDelay: `${s * 40}ms` }} />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 text-base leading-relaxed text-foreground/90">
+                    <span className="text-foreground">"</span>
+                    {t.q}
+                    <span className="text-foreground">"</span>
+                  </blockquote>
                 </div>
-              </figcaption>
-            </figure>
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+                  <div className="grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white transition-transform duration-500 group-hover:scale-110" style={{ background: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
+                    {t.a[0]}
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold">{t.a}</div>
+                    <div className="text-xs text-muted-foreground">{t.role}</div>
+                  </div>
+                </figcaption>
+              </figure>
+            </Reveal>
           ))}
         </div>
       </div>
