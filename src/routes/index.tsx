@@ -665,7 +665,7 @@ function FloatingWhatsApp() {
       rel="noopener noreferrer"
       onClick={() => trackPixel("Lead", { content_name: "WhatsApp flotante" })}
       aria-label="Contactar por WhatsApp"
-      className="fixed bottom-20 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-transform hover:scale-110 active:scale-95 md:bottom-5"
+      className="fixed bottom-20 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-transform hover:scale-110 active:scale-95 md:bottom-5 animate-pulse-ring"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
