@@ -111,14 +111,23 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-60" />
+      {/* Animated radial blobs */}
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full opacity-40 blur-3xl animate-blob"
         style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--brand-blue) 35%, transparent), transparent)" }}
+      />
+      <div
+        className="pointer-events-none absolute top-40 -left-32 h-[420px] w-[420px] rounded-full opacity-30 blur-3xl animate-blob"
+        style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--brand-orange) 45%, transparent), transparent)", animationDelay: "-6s" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-0 h-[380px] w-[380px] rounded-full opacity-30 blur-3xl animate-blob"
+        style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--brand-blue) 45%, transparent), transparent)", animationDelay: "-12s" }}
       />
       <div className="relative mx-auto max-w-7xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 lg:pt-32">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground backdrop-blur animate-pulse-ring">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ background: "var(--brand-orange)" }} />
                 <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "var(--brand-orange)" }} />
@@ -127,21 +136,24 @@ function Hero() {
             </div>
             <h1 className="mt-6 text-balance font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
               La prevención<br />
-              <span className="gradient-text">sin papeles</span>,<br />
+              <span
+                className="gradient-text animate-shimmer"
+                style={{ backgroundImage: "linear-gradient(90deg, var(--brand-blue), var(--brand-orange), var(--brand-blue))" }}
+              >sin papeles</span>,<br />
               sin sustos.
             </h1>
             <p className="mt-6 max-w-xl text-balance text-lg text-muted-foreground sm:text-xl">
               SeguritoApp digitaliza inspecciones, centraliza tu documentación y genera reportes automáticos. Cumple la normativa desde tu celular.
             </p>
             <div id="descargar" className="mt-8 flex flex-wrap gap-3">
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "AppStore", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.02] hover:bg-white/10 hover:glow-blue">
-                <Apple className="h-6 w-6" />
+              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "AppStore", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/10 hover:glow-blue">
+                <Apple className="h-6 w-6 transition-transform group-hover:-rotate-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-70">Descarga en</div>
                   <div className="text-sm font-semibold">App Store</div>
                 </div>
               </a>
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.02] hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
+              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
                 <PlayStoreIcon />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-90">Disponible en</div>
@@ -158,11 +170,13 @@ function Hero() {
 
           <div className="relative">
             <div
-              className="absolute -inset-6 rounded-[3rem] opacity-30 blur-2xl"
+              className="absolute -inset-6 rounded-[3rem] opacity-40 blur-2xl animate-blob"
               style={{ background: "linear-gradient(135deg, var(--brand-blue), var(--brand-orange))" }}
             />
-            <PhoneFrame src={dashboard.url} />
-            <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-border bg-card p-3 shadow-xl sm:flex sm:items-center sm:gap-3">
+            <div className="relative animate-float-slow">
+              <PhoneFrame src={dashboard.url} />
+            </div>
+            <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-border bg-card/90 p-3 shadow-xl backdrop-blur sm:flex sm:items-center sm:gap-3 animate-float" style={{ animationDelay: "-2s" }}>
               <div className="grid h-10 w-10 place-items-center rounded-xl" style={{ background: "color-mix(in oklab, var(--brand-orange) 15%, transparent)" }}>
                 <Bell className="h-5 w-5" style={{ color: "var(--brand-orange)" }} />
               </div>
@@ -171,13 +185,21 @@ function Hero() {
                 <div className="text-sm font-semibold">Inspección en 3 días</div>
               </div>
             </div>
-            <div className="absolute -top-3 -right-3 hidden rounded-2xl border border-border bg-card p-3 shadow-xl sm:flex sm:items-center sm:gap-3">
+            <div className="absolute -top-3 -right-3 hidden rounded-2xl border border-border bg-card/90 p-3 shadow-xl backdrop-blur sm:flex sm:items-center sm:gap-3 animate-float" style={{ animationDelay: "-4s" }}>
               <div className="grid h-10 w-10 place-items-center rounded-xl" style={{ background: "color-mix(in oklab, var(--brand-blue) 15%, transparent)" }}>
                 <FileCheck className="h-5 w-5" style={{ color: "var(--brand-blue)" }} />
               </div>
               <div className="leading-tight">
                 <div className="text-xs text-muted-foreground">Reporte listo</div>
                 <div className="text-sm font-semibold">DIEP / DIAT</div>
+              </div>
+            </div>
+            {/* Live metric pill */}
+            <div className="absolute top-1/2 -left-10 hidden -translate-y-1/2 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-xl backdrop-blur md:block animate-drift">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Cumplimiento</div>
+              <div className="font-display text-2xl font-bold" style={{ color: "var(--brand-blue)" }}>98%</div>
+              <div className="mt-1 h-1.5 w-24 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-[98%] rounded-full" style={{ background: "var(--brand-blue)" }} />
               </div>
             </div>
           </div>
