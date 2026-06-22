@@ -359,17 +359,21 @@ function Mockups() {
         </div>
         <div className="mt-14 grid gap-8 lg:grid-cols-3">
           {shots.map((s, i) => (
-            <div key={i} className="group">
-              <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 transition-all group-hover:-translate-y-1">
-                <div
-                  className="absolute inset-x-8 top-8 h-40 rounded-2xl opacity-60 blur-2xl"
-                  style={{ background: i === 1 ? "color-mix(in oklab, var(--brand-blue) 40%, transparent)" : "color-mix(in oklab, var(--brand-orange) 35%, transparent)" }}
-                />
-                <PhoneFrame src={s.src} />
+            <Reveal key={i} delay={i * 120}>
+              <div className="group">
+                <div className="tilt-hover relative overflow-hidden rounded-3xl border border-border bg-surface p-8">
+                  <div
+                    className="absolute inset-x-8 top-8 h-40 rounded-2xl opacity-60 blur-2xl animate-blob"
+                    style={{ background: i === 1 ? "color-mix(in oklab, var(--brand-blue) 40%, transparent)" : "color-mix(in oklab, var(--brand-orange) 35%, transparent)", animationDelay: `${-i * 4}s` }}
+                  />
+                  <div className="relative animate-float-slow" style={{ animationDelay: `${-i * 2}s` }}>
+                    <PhoneFrame src={s.src} />
+                  </div>
+                </div>
+                <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
               </div>
-              <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
