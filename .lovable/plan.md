@@ -1,21 +1,27 @@
-## Meta Pixel + eventos personalizados
+## Cambios solicitados
 
-**Pixel ID:** `1994241321199042` — se carga en todo el sitio (Opción 1) con eventos personalizados (Opción B).
+### 1. "20 días gratis" → "7 días gratis" (en todo el sitio)
 
-### Cambios
+Revisé el código y verifiqué que el texto "20 días" NO está dentro de las imágenes de los mockups de celular (esas son imágenes estáticas que muestran un dashboard genérico). El texto que ves "en la parte superior del celular" en vista móvil es un chip de HTML que aparece junto al mockup. Es solo texto, así que se cambia en código.
 
-1. **`src/routes/__root.tsx`** — Inyectar el script base del Pixel en `RootShell` (dentro de `<head>`) para que cargue en todas las rutas y dispare `PageView` automáticamente. Incluir el `<noscript>` con la imagen de fallback dentro de `<body>`.
+Aparece en 3 lugares de `src/routes/index.tsx`:
 
-2. **`src/lib/meta-pixel.ts`** (nuevo) — Helper tipado `trackPixel(event, params?)` que llama `window.fbq('track', ...)` de forma segura (verifica que exista).
+- **Hero (línea 165)** — chip con check: `20 días gratis` → `7 días gratis`
+- **Plan Free (línea 450)** — descripción: `Prueba gratuita (20 días full, luego restringido)` → `Prueba gratuita (7 días full, luego restringido)`
+- **FAQ (línea 529)** — respuesta: `Tienes 20 días con todas las funcionalidades…` → `Tienes 7 días con todas las funcionalidades…`
 
-3. **`src/routes/index.tsx`** — Disparar eventos personalizados:
-   - **WhatsApp flotante** (`FloatingWhatsApp`, línea 606): `Lead` con `{ content_name: 'WhatsApp flotante' }` al hacer clic.
-   - **Botones App Store** (líneas 139 y 517): `trackCustom('DownloadClick', { store: 'AppStore', location: 'hero'|'cta' })`.
-   - **Botones Google Play** (líneas 146 y 524): `trackCustom('DownloadClick', { store: 'GooglePlay', location: 'hero'|'cta' })`.
+### 2. Quitar el bloque "Restricción de uso" de las tarjetas de planes
 
-### Detalles técnicos
+En `PlanCard` (líneas ~504-510), eliminar todo el recuadro gris que muestra el ícono ⚠️ + título "RESTRICCIÓN DE USO" + texto. Las tarjetas quedan con: nombre, descripción, precio y la lista de checks (sin cambios en los checks).
 
-- El Pixel solo se ejecuta en el cliente; el snippet se inyecta como `<script>` plano dentro del shell SSR — el código original de Meta ya hace `if (f.fbq) return;` por lo que es seguro frente a doble carga.
-- Para tipar `window.fbq`, se agrega `declare global { interface Window { fbq?: (...args: any[]) => void } }` en `meta-pixel.ts`.
-- Los eventos de descarga usan `trackCustom` (no es estándar de Meta), permitiendo segmentar por tienda y ubicación del botón en Ads Manager.
-- No se modifica la lógica de negocio ni el diseño visual — solo se agregan handlers `onClick` que llaman al helper antes de la navegación nativa del enlace.
+También limpiar el campo `restriccion` del array `plans` y de la firma del componente `PlanCard`, ya que dejará de usarse.
+
+### Lo que NO cambia
+
+- Los mockups de celular (imágenes) — no contienen el texto "20 días".
+- Los precios ni las características (checks) de cada plan.
+- El resto de la sección de planes (badge "Más popular", animaciones, layout 3+2).
+
+### Verificación
+
+Después de aplicar los cambios, capturo screenshots con Playwright del hero y de la sección de planes para confirmar que se ven correctos.
