@@ -12,6 +12,7 @@ import dashboard from "@/assets/app-dashboard.asset.json";
 import menu from "@/assets/app-menu.asset.json";
 import diep from "@/assets/app-diep.asset.json";
 import { trackPixel, trackPixelCustom } from "@/lib/meta-pixel";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
