@@ -277,14 +277,22 @@ function Benefits() {
         </div>
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((b, i) => (
-            <div key={i} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl">
-              <div className="grid h-12 w-12 place-items-center rounded-xl"
-                style={{ background: i % 2 === 0 ? "color-mix(in oklab, var(--brand-blue) 12%, transparent)" : "color-mix(in oklab, var(--brand-orange) 12%, transparent)" }}>
-                <b.icon className="h-6 w-6" style={{ color: i % 2 === 0 ? "var(--brand-blue)" : "var(--brand-orange)" }} />
+            <Reveal key={i} delay={i * 80}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-2 hover:border-foreground/25 hover:shadow-2xl">
+                <div
+                  className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  style={{ background: `radial-gradient(420px circle at var(--mx,50%) var(--my,30%), color-mix(in oklab, ${i % 2 === 0 ? "var(--brand-blue)" : "var(--brand-orange)"} 18%, transparent), transparent 60%)` }}
+                />
+                <div className="relative">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+                    style={{ background: i % 2 === 0 ? "color-mix(in oklab, var(--brand-blue) 12%, transparent)" : "color-mix(in oklab, var(--brand-orange) 12%, transparent)" }}>
+                    <b.icon className="h-6 w-6" style={{ color: i % 2 === 0 ? "var(--brand-blue)" : "var(--brand-orange)" }} />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold">{b.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.desc}</p>
+                </div>
               </div>
-              <h3 className="mt-5 text-lg font-semibold">{b.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
