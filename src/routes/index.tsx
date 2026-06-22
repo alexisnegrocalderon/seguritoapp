@@ -53,6 +53,7 @@ function Landing() {
 
 function Nav() {
   const [open, setOpen] = useState(false);
+  const platform = usePlatformModal();
   const links = [
     { href: "#beneficios", label: "Beneficios" },
     { href: "#como-funciona", label: "Cómo funciona" },
