@@ -151,20 +151,20 @@ function Hero() {
               SeguritoApp digitaliza inspecciones, centraliza tu documentación y genera reportes automáticos. Cumple la normativa desde tu celular.
             </p>
             <div id="descargar" className="mt-8 flex flex-wrap gap-3">
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "AppStore", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/10 hover:glow-blue">
+              <button type="button" onClick={() => { trackPixelCustom("DownloadClick", { store: "AppStore", location: "hero" }); platform.open("hero-appstore"); }} className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/10 hover:glow-blue">
                 <Apple className="h-6 w-6 transition-transform group-hover:-rotate-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-70">Descarga en</div>
                   <div className="text-sm font-semibold">App Store</div>
                 </div>
-              </a>
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
+              </button>
+              <button type="button" onClick={() => { trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "hero" }); platform.open("hero-playstore"); }} className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
                 <PlayStoreIcon />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-90">Disponible en</div>
                   <div className="text-sm font-semibold">Google Play</div>
                 </div>
-              </a>
+              </button>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
               <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> 7 días gratis</div>
