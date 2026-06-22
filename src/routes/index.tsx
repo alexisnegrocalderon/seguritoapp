@@ -13,6 +13,7 @@ import menu from "@/assets/app-menu.asset.json";
 import diep from "@/assets/app-diep.asset.json";
 import { trackPixel, trackPixelCustom } from "@/lib/meta-pixel";
 import { Reveal } from "@/components/Reveal";
+import { PlatformModalProvider, usePlatformModal } from "@/components/PlatformModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
