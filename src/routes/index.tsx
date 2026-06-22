@@ -485,6 +485,7 @@ function Pricing() {
 }
 
 function PlanCard({ p }: { p: { name: string; price: string; period: string; desc: string; features: string[]; cta: string; icon: typeof Shield; popular?: boolean } }) {
+  const platform = usePlatformModal();
   return (
     <div className={`group relative flex h-full flex-col rounded-3xl border bg-card p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${p.popular ? "border-transparent shadow-2xl" : "border-border hover:border-foreground/25"}`}
       style={p.popular ? { boxShadow: "0 0 0 2px var(--brand-orange), 0 30px 60px -20px color-mix(in oklab, var(--brand-orange) 40%, transparent)" } : undefined}>
