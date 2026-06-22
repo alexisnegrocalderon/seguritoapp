@@ -232,16 +232,22 @@ function PlayStoreIcon() {
 
 function Logos() {
   const items = ["DS 44", "DS 67", "DS 594", "+ley 16.744", "+protocolos MINSAL"];
+  const loop = [...items, ...items];
   return (
     <section className="border-y border-border bg-surface/50 py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <p className="text-center text-sm font-semibold uppercase tracking-widest text-muted-foreground">
           Cumplimiento normativo chileno
         </p>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-base font-semibold text-muted-foreground/70">
-          {items.map((i) => (
-            <span key={i} className="font-display">{i}</span>
-          ))}
+        <div
+          className="mt-6 overflow-hidden"
+          style={{ maskImage: "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)", WebkitMaskImage: "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)" }}
+        >
+          <div className="flex w-max items-center gap-x-12 text-base font-semibold text-muted-foreground/80 animate-marquee">
+            {loop.map((i, idx) => (
+              <span key={idx} className="font-display whitespace-nowrap">{i}</span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
