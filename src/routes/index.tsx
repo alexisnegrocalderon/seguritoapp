@@ -31,21 +31,23 @@ export const Route = createFileRoute("/")({
 
 function Landing() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Nav />
-      <Hero />
-      <Logos />
-      <Benefits />
-      <HowItWorks />
-      <Mockups />
-      <Testimonials />
-      <Pricing />
-      <FAQ />
-      <CTA />
-      <Footer />
-      <FloatingCTA />
-      <FloatingWhatsApp />
-    </div>
+    <PlatformModalProvider>
+      <div className="min-h-screen bg-background text-foreground">
+        <Nav />
+        <Hero />
+        <Logos />
+        <Benefits />
+        <HowItWorks />
+        <Mockups />
+        <Testimonials />
+        <Pricing />
+        <FAQ />
+        <CTA />
+        <Footer />
+        <FloatingCTA />
+        <FloatingWhatsApp />
+      </div>
+    </PlatformModalProvider>
   );
 }
 
