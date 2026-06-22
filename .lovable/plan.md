@@ -1,27 +1,43 @@
-## Cambios solicitados
+# Integrar la plataforma dentro del sitio (modal embebido)
 
-### 1. "20 días gratis" → "7 días gratis" (en todo el sitio)
+## Objetivo
+Cuando el usuario haga click en "Comenzar" o en cualquier botón que hoy lleva a `https://seguritoapp-467657972843.southamerica-west1.run.app/`, en vez de abrir una pestaña nueva, se abrirá un **modal full-screen** dentro del sitio con la plataforma cargada en un `<iframe>`. Verifiqué los headers del dominio y no envía `X-Frame-Options` ni `frame-ancestors`, así que se puede embeber sin problema.
 
-Revisé el código y verifiqué que el texto "20 días" NO está dentro de las imágenes de los mockups de celular (esas son imágenes estáticas que muestran un dashboard genérico). El texto que ves "en la parte superior del celular" en vista móvil es un chip de HTML que aparece junto al mockup. Es solo texto, así que se cambia en código.
+## UX / Diseño (kinético oscuro, alineado a la marca)
+- Overlay full-screen con fondo `bg-background/95` + `backdrop-blur-xl` y borde superior con gradiente naranja→azul (glow sutil).
+- Barra superior compacta con:
+  - Logo + nombre "Securito App"
+  - Píldora con el host de la plataforma + indicador "● Conectado" (punto verde pulsante)
+  - Botones: "Abrir en pestaña nueva" (icono `ExternalLink`) y "Cerrar" (icono `X`)
+- Estado de carga: skeleton con shimmer + texto "Cargando plataforma segura…" mientras el iframe dispara `onLoad`.
+- Animación de entrada: scale + fade (`animate-in zoom-in-95 fade-in`), cierre con `Esc` y click en backdrop.
+- Body lock scroll cuando esté abierto.
+- Responsive: en móvil ocupa 100vh/100vw, en desktop deja 16px de margen con bordes redondeados y `shadow-elegant`.
 
-Aparece en 3 lugares de `src/routes/index.tsx`:
+## Cambios técnicos
+1. **Nuevo componente** `src/components/PlatformModal.tsx`
+   - Usa `Dialog` de shadcn (`src/components/ui/dialog.tsx`) en modo full-screen custom.
+   - Props: `open`, `onOpenChange`, `url` (default = URL de la plataforma).
+   - Render: barra superior + `<iframe src={url} className="h-full w-full" allow="clipboard-read; clipboard-write; camera; microphone; geolocation" />` + estado `loading`.
+   - Trackea pixel `PlatformOpen` al abrirse (mismo `trackPixelCustom` ya usado).
 
-- **Hero (línea 165)** — chip con check: `20 días gratis` → `7 días gratis`
-- **Plan Free (línea 450)** — descripción: `Prueba gratuita (20 días full, luego restringido)` → `Prueba gratuita (7 días full, luego restringido)`
-- **FAQ (línea 529)** — respuesta: `Tienes 20 días con todas las funcionalidades…` → `Tienes 7 días con todas las funcionalidades…`
+2. **Hook ligero** `usePlatformModal` (o contexto simple en `index.tsx`) con `const [platformOpen, setPlatformOpen] = useState(false)` para abrir desde cualquier botón.
 
-### 2. Quitar el bloque "Restricción de uso" de las tarjetas de planes
+3. **Reemplazar los `<a href="…run.app/">`** en `src/routes/index.tsx` por `<button onClick={() => setPlatformOpen(true)}>` conservando estilos y tracking. Lugares:
+   - Nav desktop (línea 81) y menú móvil (línea 100)
+   - Hero: botones AppStore y GooglePlay (líneas 149, 156)
+   - Tarjetas de planes (línea 512)
+   - CTA final (líneas 567, 574)
+   - Botón sticky inferior (línea 649)
+   - El de WhatsApp (línea 663) y el de Instagram **no** cambian.
 
-En `PlanCard` (líneas ~504-510), eliminar todo el recuadro gris que muestra el ícono ⚠️ + título "RESTRICCIÓN DE USO" + texto. Las tarjetas quedan con: nombre, descripción, precio y la lista de checks (sin cambios en los checks).
+4. **Montar `<PlatformModal />`** una sola vez al final del árbol de `IndexPage`.
 
-También limpiar el campo `restriccion` del array `plans` y de la firma del componente `PlanCard`, ya que dejará de usarse.
+## Detalles técnicos
+- El iframe no necesita configuración del backend (no hay X-Frame-Options).
+- Botón "Abrir en pestaña nueva" como fallback por si el usuario quiere pantalla completa real o si algún flujo (ej. OAuth) requiere top-level navigation.
+- `sandbox` del iframe: **no** se aplica para no romper auth/cookies de la plataforma.
+- Sin cambios de copy ni de contenido — solo comportamiento de los CTAs y un componente nuevo.
 
-### Lo que NO cambia
-
-- Los mockups de celular (imágenes) — no contienen el texto "20 días".
-- Los precios ni las características (checks) de cada plan.
-- El resto de la sección de planes (badge "Más popular", animaciones, layout 3+2).
-
-### Verificación
-
-Después de aplicar los cambios, capturo screenshots con Playwright del hero y de la sección de planes para confirmar que se ven correctos.
+## Verificación
+- Playwright: abrir `/`, clickear "Comenzar", screenshot del modal con iframe cargado, confirmar que la URL del sitio sigue siendo `/` (no navegó fuera), cerrar con Esc, confirmar que el modal desaparece.
