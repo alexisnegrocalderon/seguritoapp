@@ -465,10 +465,14 @@ function Pricing() {
         </div>
 
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
-          {plans.slice(0, 3).map((p) => <PlanCard key={p.name} p={p} />)}
+          {plans.slice(0, 3).map((p, i) => (
+            <Reveal key={p.name} delay={i * 90}><PlanCard p={p} /></Reveal>
+          ))}
         </div>
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
-          {plans.slice(3).map((p) => <PlanCard key={p.name} p={p} />)}
+          {plans.slice(3).map((p, i) => (
+            <Reveal key={p.name} delay={i * 90}><PlanCard p={p} /></Reveal>
+          ))}
         </div>
       </div>
     </section>
