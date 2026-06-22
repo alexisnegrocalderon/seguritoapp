@@ -13,6 +13,7 @@ import menu from "@/assets/app-menu.asset.json";
 import diep from "@/assets/app-diep.asset.json";
 import { trackPixel, trackPixelCustom } from "@/lib/meta-pixel";
 import { Reveal } from "@/components/Reveal";
+import { PlatformModalProvider, usePlatformModal } from "@/components/PlatformModal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -30,26 +31,29 @@ export const Route = createFileRoute("/")({
 
 function Landing() {
   return (
-    <div className="min-h-screen bg-background text-foreground">
-      <Nav />
-      <Hero />
-      <Logos />
-      <Benefits />
-      <HowItWorks />
-      <Mockups />
-      <Testimonials />
-      <Pricing />
-      <FAQ />
-      <CTA />
-      <Footer />
-      <FloatingCTA />
-      <FloatingWhatsApp />
-    </div>
+    <PlatformModalProvider>
+      <div className="min-h-screen bg-background text-foreground">
+        <Nav />
+        <Hero />
+        <Logos />
+        <Benefits />
+        <HowItWorks />
+        <Mockups />
+        <Testimonials />
+        <Pricing />
+        <FAQ />
+        <CTA />
+        <Footer />
+        <FloatingCTA />
+        <FloatingWhatsApp />
+      </div>
+    </PlatformModalProvider>
   );
 }
 
 function Nav() {
   const [open, setOpen] = useState(false);
+  const platform = usePlatformModal();
   const links = [
     { href: "#beneficios", label: "Beneficios" },
     { href: "#como-funciona", label: "Cómo funciona" },
@@ -78,9 +82,9 @@ function Nav() {
           <a href="https://instagram.com/seguritoapp" target="_blank" rel="noopener noreferrer" className="grid h-9 w-9 place-items-center rounded-full border border-border text-muted-foreground transition-colors hover:border-[var(--brand-orange)] hover:text-[var(--brand-orange)]" aria-label="Instagram">
             <Instagram className="h-4 w-4" />
           </a>
-          <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className="rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]" style={{ background: "var(--brand-orange)" }}>
+          <button type="button" onClick={() => platform.open("nav")} className="rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-transform hover:scale-[1.03]" style={{ background: "var(--brand-orange)" }}>
             Empezar gratis
-          </a>
+          </button>
         </div>
         <button onClick={() => setOpen(!open)} className="md:hidden" aria-label="Menu">
           <div className="space-y-1.5">
@@ -97,9 +101,9 @@ function Nav() {
                 {l.label}
               </a>
             ))}
-            <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className="mt-2 block rounded-full px-4 py-2.5 text-center text-sm font-semibold text-white" style={{ background: "var(--brand-orange)" }}>
+            <button type="button" onClick={() => { setOpen(false); platform.open("nav-mobile"); }} className="mt-2 block w-full rounded-full px-4 py-2.5 text-center text-sm font-semibold text-white" style={{ background: "var(--brand-orange)" }}>
               Empezar gratis
-            </a>
+            </button>
           </div>
         </div>
       )}
@@ -108,6 +112,7 @@ function Nav() {
 }
 
 function Hero() {
+  const platform = usePlatformModal();
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-60" />
@@ -146,20 +151,20 @@ function Hero() {
               SeguritoApp digitaliza inspecciones, centraliza tu documentación y genera reportes automáticos. Cumple la normativa desde tu celular.
             </p>
             <div id="descargar" className="mt-8 flex flex-wrap gap-3">
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "AppStore", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/10 hover:glow-blue">
+              <button type="button" onClick={() => { trackPixelCustom("DownloadClick", { store: "AppStore", location: "hero" }); platform.open("hero-appstore"); }} className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/10 hover:glow-blue">
                 <Apple className="h-6 w-6 transition-transform group-hover:-rotate-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-70">Descarga en</div>
                   <div className="text-sm font-semibold">App Store</div>
                 </div>
-              </a>
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
+              </button>
+              <button type="button" onClick={() => { trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "hero" }); platform.open("hero-playstore"); }} className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
                 <PlayStoreIcon />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-90">Disponible en</div>
                   <div className="text-sm font-semibold">Google Play</div>
                 </div>
-              </a>
+              </button>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
               <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> 7 días gratis</div>
@@ -480,6 +485,7 @@ function Pricing() {
 }
 
 function PlanCard({ p }: { p: { name: string; price: string; period: string; desc: string; features: string[]; cta: string; icon: typeof Shield; popular?: boolean } }) {
+  const platform = usePlatformModal();
   return (
     <div className={`group relative flex h-full flex-col rounded-3xl border bg-card p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${p.popular ? "border-transparent shadow-2xl" : "border-border hover:border-foreground/25"}`}
       style={p.popular ? { boxShadow: "0 0 0 2px var(--brand-orange), 0 30px 60px -20px color-mix(in oklab, var(--brand-orange) 40%, transparent)" } : undefined}>
@@ -509,10 +515,10 @@ function PlanCard({ p }: { p: { name: string; price: string; period: string; des
           </li>
         ))}
       </ul>
-      <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" className={`mt-7 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02]`}
+      <button type="button" onClick={() => platform.open(`plan-${p.name.toLowerCase()}`)} className={`mt-7 inline-flex items-center justify-center rounded-xl px-4 py-3 text-sm font-semibold text-white transition-all hover:scale-[1.02]`}
         style={{ background: p.popular ? "var(--brand-orange)" : "var(--brand-blue)" }}>
         {p.cta}
-      </a>
+      </button>
     </div>
   );
 }
@@ -550,6 +556,7 @@ function FAQ() {
 }
 
 function CTA() {
+  const platform = usePlatformModal();
   return (
     <section className="relative overflow-hidden py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
@@ -564,20 +571,20 @@ function CTA() {
               Únete a cientos de prevencionistas que ya digitalizaron su gestión con SeguritoApp.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "AppStore", location: "cta" })} className="inline-flex items-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-[oklch(0.16_0.04_260)] transition-transform hover:scale-[1.02]">
+              <button type="button" onClick={() => { trackPixelCustom("DownloadClick", { store: "AppStore", location: "cta" }); platform.open("cta-appstore"); }} className="inline-flex items-center gap-3 rounded-2xl bg-white px-5 py-3.5 text-[oklch(0.16_0.04_260)] transition-transform hover:scale-[1.02]">
                 <Apple className="h-6 w-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-60">Descarga en</div>
                   <div className="text-sm font-semibold">App Store</div>
                 </div>
-              </a>
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "cta" })} className="inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-white transition-transform hover:scale-[1.02]" style={{ background: "var(--brand-orange)" }}>
+              </button>
+              <button type="button" onClick={() => { trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "cta" }); platform.open("cta-playstore"); }} className="inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-white transition-transform hover:scale-[1.02]" style={{ background: "var(--brand-orange)" }}>
                 <PlayStoreIcon />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-90">Disponible en</div>
                   <div className="text-sm font-semibold">Google Play</div>
                 </div>
-              </a>
+              </button>
             </div>
           </div>
         </div>
@@ -643,16 +650,16 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
 }
 
 function FloatingCTA() {
+  const platform = usePlatformModal();
   return (
     <div className="fixed bottom-5 left-1/2 z-50 w-[280px] -translate-x-1/2 md:hidden">
-      <a
-        href="https://seguritoapp-467657972843.southamerica-west1.run.app/"
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        type="button"
+        onClick={() => platform.open("floating-cta")}
         className="flex w-full items-center justify-center rounded-full border-0 bg-[var(--brand-orange)]/85 py-3.5 text-sm font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-lg transition-transform hover:scale-[1.03] active:scale-[0.98]"
       >
         Empezar gratis
-      </a>
+      </button>
     </div>
   );
 }
