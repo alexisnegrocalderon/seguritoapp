@@ -122,7 +122,7 @@ function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ background: "var(--brand-orange)" }} />
                 <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "var(--brand-orange)" }} />
               </span>
-              Prevención de riesgos · Ley 16.744
+              Prevención de riesgos · D.S. 44
             </div>
             <h1 className="mt-6 text-balance font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
               La prevención<br />
