@@ -112,6 +112,7 @@ function Nav() {
 }
 
 function Hero() {
+  const platform = usePlatformModal();
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-60" />
