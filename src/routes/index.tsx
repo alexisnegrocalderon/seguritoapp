@@ -307,8 +307,8 @@ function HowItWorks() {
     { n: "03", icon: FileCheck, title: "Genera reportes", desc: "Descarga PDFs con validez legal listos para enviar a tus clientes o auditorías." },
   ];
   return (
-    <section id="como-funciona" className="relative bg-ink py-24 text-background sm:py-32" style={{ color: "oklch(0.98 0 0)" }}>
-      <div className="absolute inset-0 opacity-[0.07]" style={{ background: "radial-gradient(circle at 30% 0%, var(--brand-blue), transparent 50%), radial-gradient(circle at 70% 100%, var(--brand-orange), transparent 50%)" }} />
+    <section id="como-funciona" className="relative bg-ink py-24 text-background sm:py-32 overflow-hidden" style={{ color: "oklch(0.98 0 0)" }}>
+      <div className="absolute inset-0 opacity-[0.07] animate-blob" style={{ background: "radial-gradient(circle at 30% 0%, var(--brand-blue), transparent 50%), radial-gradient(circle at 70% 100%, var(--brand-orange), transparent 50%)" }} />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--brand-orange)" }}>Cómo funciona</span>
@@ -318,12 +318,18 @@ function HowItWorks() {
         </div>
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {steps.map((s, i) => (
-            <div key={i} className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur">
-              <div className="font-display text-6xl font-bold" style={{ color: "color-mix(in oklab, var(--brand-orange) 80%, transparent)" }}>{s.n}</div>
-              <s.icon className="mt-6 h-7 w-7" style={{ color: "var(--brand-blue)" }} />
-              <h3 className="mt-4 text-xl font-semibold">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{s.desc}</p>
-            </div>
+            <Reveal key={i} delay={i * 120}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-white/25 hover:bg-white/[0.06]">
+                <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-60"
+                  style={{ background: i === 1 ? "var(--brand-blue)" : "var(--brand-orange)" }} />
+                <div className="relative">
+                  <div className="font-display text-6xl font-bold transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-1" style={{ color: "color-mix(in oklab, var(--brand-orange) 80%, transparent)" }}>{s.n}</div>
+                  <s.icon className="mt-6 h-7 w-7 transition-transform duration-500 group-hover:rotate-12" style={{ color: "var(--brand-blue)" }} />
+                  <h3 className="mt-4 text-xl font-semibold">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">{s.desc}</p>
+                </div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
