@@ -236,7 +236,7 @@ function PlayStoreIcon() {
 }
 
 function Logos() {
-  const items = ["DS 44", "DS 67", "DS 594", "+ley 16.744", "+protocolos MINSAL"];
+  const items = ["DS 44", "DS 67", "DS 594", "ley 16.744", "protocolos MINSAL"];
   const loop = [...items, ...items];
   return (
     <section className="border-y border-border bg-surface/50 py-10">
