@@ -4,7 +4,7 @@ import {
   Shield, FileCheck, Bell, BarChart3, Cloud, Lock,
   Smartphone, ClipboardList, FileText, Check, Apple,
   Mail, Instagram, ChevronDown,
-  Zap, Award, Building2, Star, TriangleAlert,
+  Zap, Award, Building2, Star,
 
 } from "lucide-react";
 import logo from "@/assets/logo.asset.json";
@@ -162,7 +162,7 @@ function Hero() {
               </a>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> 20 días gratis</div>
+              <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> 7 días gratis</div>
               <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> Sin tarjeta</div>
               <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> Soporte en español</div>
             </div>
@@ -447,11 +447,11 @@ function Testimonials() {
 
 function Pricing() {
   const plans = [
-    { name: "Free", price: "$0", period: "para siempre", desc: "Prueba gratuita (20 días full, luego restringido).", restriccion: "Restringido a 1 empresa", features: ["Límite: 1 empresa, 10 trabajadores", "Límite: 1 PDF por día", "Sin DIEP / DIAT", "Marca de agua: 'Generado por Segurito'"], cta: "Empezar gratis", icon: Shield },
-    { name: "Básico", price: "$9.800", period: "CLP / mes", desc: "Para pequeños equipos y asesores.", restriccion: "Hasta 2 empresas y 100 trabajadores", features: ["Hasta 2 empresas", "Hasta 100 trabajadores en total", "Límite: 3 PDFs diarios", "Sin DIEP / DIAT"], cta: "Suscribirse Básico", icon: Shield },
-    { name: "Avanzado", price: "$14.900", period: "CLP / mes", desc: "Para consultoras en crecimiento.", restriccion: "Hasta 4 empresas y 250 trabajadores", features: ["Hasta 4 empresas", "Hasta 250 trabajadores en total", "Límite: 10 PDFs diarios", "Módulo DIEP / DIAT incluido"], cta: "Suscribirse Avanzado", icon: Zap, popular: true },
-    { name: "Profesional", price: "$21.650", period: "CLP / mes", desc: "Para grandes operaciones.", restriccion: "Hasta 6 empresas y 500 trabajadores", features: ["Hasta 6 empresas", "Hasta 500 trabajadores en total", "Límite: 20 PDFs diarios", "Módulo DIEP / DIAT incluido"], cta: "Suscribirse Profesional", icon: Award },
-    { name: "Corporativo", price: "$38.850", period: "CLP / mes", desc: "Para instituciones y corporativos.", restriccion: "Hasta 10 empresas y 2.000 trabajadores", features: ["Hasta 10 empresas", "Hasta 2.000 trabajadores en total", "PDFs diarios ilimitados", "Todas las funciones premium y soporte"], cta: "Suscribirse Corporativo", icon: Building2 },
+    { name: "Free", price: "$0", period: "para siempre", desc: "Prueba gratuita (7 días full, luego restringido).", features: ["Límite: 1 empresa, 10 trabajadores", "Límite: 1 PDF por día", "Sin DIEP / DIAT", "Marca de agua: 'Generado por Segurito'"], cta: "Empezar gratis", icon: Shield },
+    { name: "Básico", price: "$9.800", period: "CLP / mes", desc: "Para pequeños equipos y asesores.", features: ["Hasta 2 empresas", "Hasta 100 trabajadores en total", "Límite: 3 PDFs diarios", "Sin DIEP / DIAT"], cta: "Suscribirse Básico", icon: Shield },
+    { name: "Avanzado", price: "$14.900", period: "CLP / mes", desc: "Para consultoras en crecimiento.", features: ["Hasta 4 empresas", "Hasta 250 trabajadores en total", "Límite: 10 PDFs diarios", "Módulo DIEP / DIAT incluido"], cta: "Suscribirse Avanzado", icon: Zap, popular: true },
+    { name: "Profesional", price: "$21.650", period: "CLP / mes", desc: "Para grandes operaciones.", features: ["Hasta 6 empresas", "Hasta 500 trabajadores en total", "Límite: 20 PDFs diarios", "Módulo DIEP / DIAT incluido"], cta: "Suscribirse Profesional", icon: Award },
+    { name: "Corporativo", price: "$38.850", period: "CLP / mes", desc: "Para instituciones y corporativos.", features: ["Hasta 10 empresas", "Hasta 2.000 trabajadores en total", "PDFs diarios ilimitados", "Todas las funciones premium y soporte"], cta: "Suscribirse Corporativo", icon: Building2 },
   ];
   return (
     <section id="planes" className="py-24 sm:py-32">
@@ -479,7 +479,7 @@ function Pricing() {
   );
 }
 
-function PlanCard({ p }: { p: { name: string; price: string; period: string; desc: string; restriccion: string; features: string[]; cta: string; icon: typeof Shield; popular?: boolean } }) {
+function PlanCard({ p }: { p: { name: string; price: string; period: string; desc: string; features: string[]; cta: string; icon: typeof Shield; popular?: boolean } }) {
   return (
     <div className={`group relative flex h-full flex-col rounded-3xl border bg-card p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${p.popular ? "border-transparent shadow-2xl" : "border-border hover:border-foreground/25"}`}
       style={p.popular ? { boxShadow: "0 0 0 2px var(--brand-orange), 0 30px 60px -20px color-mix(in oklab, var(--brand-orange) 40%, transparent)" } : undefined}>
@@ -501,14 +501,7 @@ function PlanCard({ p }: { p: { name: string; price: string; period: string; des
         <span className="font-display text-4xl font-bold tracking-tight">{p.price}</span>
         <span className="text-xs uppercase tracking-wider text-muted-foreground">{p.period}</span>
       </div>
-      <div className="mt-4 rounded-xl bg-muted/50 p-3">
-        <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-          <TriangleAlert className="h-3.5 w-3.5" />
-          Restricción de uso
-        </div>
-        <div className="mt-1 text-sm font-semibold text-foreground/90">{p.restriccion}</div>
-      </div>
-      <ul className="mt-5 flex-1 space-y-3">
+      <ul className="mt-6 flex-1 space-y-3">
         {p.features.map((f) => (
           <li key={f} className="flex items-start gap-2 text-sm">
             <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: "var(--brand-blue)" }} />
@@ -526,7 +519,7 @@ function PlanCard({ p }: { p: { name: string; price: string; period: string; des
 
 function FAQ() {
   const items = [
-    { q: "¿Puedo probar la app gratis?", a: "Sí. Tienes 20 días con todas las funcionalidades sin tarjeta de crédito. Luego puedes seguir con el plan Free restringido o pasar a uno de pago." },
+    { q: "¿Puedo probar la app gratis?", a: "Sí. Tienes 7 días con todas las funcionalidades sin tarjeta de crédito. Luego puedes seguir con el plan Free restringido o pasar a uno de pago." },
     { q: "¿La app cumple con la normativa chilena?", a: "Sí. SeguritoApp está diseñada en base a la Ley 16.744, D.S. 594, D.S. 44 y D.S. 67. Genera reportes con validez legal listos para fiscalización." },
     { q: "¿Funciona sin conexión a internet?", a: "Puedes registrar inspecciones y datos en terreno; al recuperar conexión se sincroniza automáticamente con la nube." },
     { q: "¿Cuántas empresas puedo gestionar?", a: "Depende del plan: desde 1 empresa en Free hasta 10 empresas en Corporativo." },
