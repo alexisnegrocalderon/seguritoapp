@@ -554,9 +554,9 @@ function CTA() {
     <section className="relative overflow-hidden py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="relative overflow-hidden rounded-3xl bg-ink p-10 text-center sm:p-16" style={{ color: "oklch(0.98 0 0)" }}>
-          <div className="absolute inset-0 opacity-30" style={{ background: "radial-gradient(circle at 20% 30%, var(--brand-blue), transparent 50%), radial-gradient(circle at 80% 70%, var(--brand-orange), transparent 50%)" }} />
+          <div className="absolute inset-0 opacity-40 animate-blob" style={{ background: "radial-gradient(circle at 20% 30%, var(--brand-blue), transparent 50%), radial-gradient(circle at 80% 70%, var(--brand-orange), transparent 50%)" }} />
           <div className="relative">
-            <Lock className="mx-auto h-10 w-10" style={{ color: "var(--brand-orange)" }} />
+            <Lock className="mx-auto h-10 w-10 animate-float" style={{ color: "var(--brand-orange)" }} />
             <h2 className="mt-5 text-balance font-display text-4xl font-bold tracking-tight sm:text-5xl">
               Tranquilidad y protección,<br /><span className="gradient-text">en tu bolsillo.</span>
             </h2>
