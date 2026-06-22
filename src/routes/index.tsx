@@ -12,6 +12,7 @@ import dashboard from "@/assets/app-dashboard.asset.json";
 import menu from "@/assets/app-menu.asset.json";
 import diep from "@/assets/app-diep.asset.json";
 import { trackPixel, trackPixelCustom } from "@/lib/meta-pixel";
+import { Reveal } from "@/components/Reveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -110,14 +111,23 @@ function Hero() {
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-grid opacity-60" />
+      {/* Animated radial blobs */}
       <div
-        className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
+        className="pointer-events-none absolute -top-40 left-1/2 h-[600px] w-[1000px] -translate-x-1/2 rounded-full opacity-40 blur-3xl animate-blob"
         style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--brand-blue) 35%, transparent), transparent)" }}
+      />
+      <div
+        className="pointer-events-none absolute top-40 -left-32 h-[420px] w-[420px] rounded-full opacity-30 blur-3xl animate-blob"
+        style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--brand-orange) 45%, transparent), transparent)", animationDelay: "-6s" }}
+      />
+      <div
+        className="pointer-events-none absolute bottom-0 right-0 h-[380px] w-[380px] rounded-full opacity-30 blur-3xl animate-blob"
+        style={{ background: "radial-gradient(closest-side, color-mix(in oklab, var(--brand-blue) 45%, transparent), transparent)", animationDelay: "-12s" }}
       />
       <div className="relative mx-auto max-w-7xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 lg:pt-32">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground backdrop-blur">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground backdrop-blur animate-pulse-ring">
               <span className="relative flex h-2 w-2">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ background: "var(--brand-orange)" }} />
                 <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "var(--brand-orange)" }} />
@@ -126,21 +136,24 @@ function Hero() {
             </div>
             <h1 className="mt-6 text-balance font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl">
               La prevención<br />
-              <span className="gradient-text">sin papeles</span>,<br />
+              <span
+                className="gradient-text animate-shimmer"
+                style={{ backgroundImage: "linear-gradient(90deg, var(--brand-blue), var(--brand-orange), var(--brand-blue))" }}
+              >sin papeles</span>,<br />
               sin sustos.
             </h1>
             <p className="mt-6 max-w-xl text-balance text-lg text-muted-foreground sm:text-xl">
               SeguritoApp digitaliza inspecciones, centraliza tu documentación y genera reportes automáticos. Cumple la normativa desde tu celular.
             </p>
             <div id="descargar" className="mt-8 flex flex-wrap gap-3">
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "AppStore", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.02] hover:bg-white/10 hover:glow-blue">
-                <Apple className="h-6 w-6" />
+              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "AppStore", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl border border-white/15 bg-white/5 px-5 py-3.5 text-foreground backdrop-blur transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:bg-white/10 hover:glow-blue">
+                <Apple className="h-6 w-6 transition-transform group-hover:-rotate-6" />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-70">Descarga en</div>
                   <div className="text-sm font-semibold">App Store</div>
                 </div>
               </a>
-              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.02] hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
+              <a href="https://seguritoapp-467657972843.southamerica-west1.run.app/" target="_blank" rel="noopener noreferrer" onClick={() => trackPixelCustom("DownloadClick", { store: "GooglePlay", location: "hero" })} className="group inline-flex items-center gap-3 rounded-2xl px-5 py-3.5 text-primary-foreground transition-all hover:scale-[1.03] hover:-translate-y-0.5 hover:glow-orange" style={{ background: "var(--brand-orange)" }}>
                 <PlayStoreIcon />
                 <div className="text-left leading-tight">
                   <div className="text-[10px] uppercase tracking-wider opacity-90">Disponible en</div>
@@ -157,11 +170,13 @@ function Hero() {
 
           <div className="relative">
             <div
-              className="absolute -inset-6 rounded-[3rem] opacity-30 blur-2xl"
+              className="absolute -inset-6 rounded-[3rem] opacity-40 blur-2xl animate-blob"
               style={{ background: "linear-gradient(135deg, var(--brand-blue), var(--brand-orange))" }}
             />
-            <PhoneFrame src={dashboard.url} />
-            <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-border bg-card p-3 shadow-xl sm:flex sm:items-center sm:gap-3">
+            <div className="relative animate-float-slow">
+              <PhoneFrame src={dashboard.url} />
+            </div>
+            <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-border bg-card/90 p-3 shadow-xl backdrop-blur sm:flex sm:items-center sm:gap-3 animate-float" style={{ animationDelay: "-2s" }}>
               <div className="grid h-10 w-10 place-items-center rounded-xl" style={{ background: "color-mix(in oklab, var(--brand-orange) 15%, transparent)" }}>
                 <Bell className="h-5 w-5" style={{ color: "var(--brand-orange)" }} />
               </div>
@@ -170,13 +185,21 @@ function Hero() {
                 <div className="text-sm font-semibold">Inspección en 3 días</div>
               </div>
             </div>
-            <div className="absolute -top-3 -right-3 hidden rounded-2xl border border-border bg-card p-3 shadow-xl sm:flex sm:items-center sm:gap-3">
+            <div className="absolute -top-3 -right-3 hidden rounded-2xl border border-border bg-card/90 p-3 shadow-xl backdrop-blur sm:flex sm:items-center sm:gap-3 animate-float" style={{ animationDelay: "-4s" }}>
               <div className="grid h-10 w-10 place-items-center rounded-xl" style={{ background: "color-mix(in oklab, var(--brand-blue) 15%, transparent)" }}>
                 <FileCheck className="h-5 w-5" style={{ color: "var(--brand-blue)" }} />
               </div>
               <div className="leading-tight">
                 <div className="text-xs text-muted-foreground">Reporte listo</div>
                 <div className="text-sm font-semibold">DIEP / DIAT</div>
+              </div>
+            </div>
+            {/* Live metric pill */}
+            <div className="absolute top-1/2 -left-10 hidden -translate-y-1/2 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-xl backdrop-blur md:block animate-drift">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Cumplimiento</div>
+              <div className="font-display text-2xl font-bold" style={{ color: "var(--brand-blue)" }}>98%</div>
+              <div className="mt-1 h-1.5 w-24 overflow-hidden rounded-full bg-white/10">
+                <div className="h-full w-[98%] rounded-full" style={{ background: "var(--brand-blue)" }} />
               </div>
             </div>
           </div>
@@ -209,16 +232,22 @@ function PlayStoreIcon() {
 
 function Logos() {
   const items = ["DS 44", "DS 67", "DS 594", "+ley 16.744", "+protocolos MINSAL"];
+  const loop = [...items, ...items];
   return (
     <section className="border-y border-border bg-surface/50 py-10">
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <p className="text-center text-sm font-semibold uppercase tracking-widest text-muted-foreground">
           Cumplimiento normativo chileno
         </p>
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-base font-semibold text-muted-foreground/70">
-          {items.map((i) => (
-            <span key={i} className="font-display">{i}</span>
-          ))}
+        <div
+          className="mt-6 overflow-hidden"
+          style={{ maskImage: "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)", WebkitMaskImage: "linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)" }}
+        >
+          <div className="flex w-max items-center gap-x-12 text-base font-semibold text-muted-foreground/80 animate-marquee">
+            {loop.map((i, idx) => (
+              <span key={idx} className="font-display whitespace-nowrap">{i}</span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -248,14 +277,22 @@ function Benefits() {
         </div>
         <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((b, i) => (
-            <div key={i} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-7 transition-all hover:-translate-y-1 hover:border-foreground/20 hover:shadow-xl">
-              <div className="grid h-12 w-12 place-items-center rounded-xl"
-                style={{ background: i % 2 === 0 ? "color-mix(in oklab, var(--brand-blue) 12%, transparent)" : "color-mix(in oklab, var(--brand-orange) 12%, transparent)" }}>
-                <b.icon className="h-6 w-6" style={{ color: i % 2 === 0 ? "var(--brand-blue)" : "var(--brand-orange)" }} />
+            <Reveal key={i} delay={i * 80}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-2 hover:border-foreground/25 hover:shadow-2xl">
+                <div
+                  className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+                  style={{ background: `radial-gradient(420px circle at var(--mx,50%) var(--my,30%), color-mix(in oklab, ${i % 2 === 0 ? "var(--brand-blue)" : "var(--brand-orange)"} 18%, transparent), transparent 60%)` }}
+                />
+                <div className="relative">
+                  <div className="grid h-12 w-12 place-items-center rounded-xl transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3"
+                    style={{ background: i % 2 === 0 ? "color-mix(in oklab, var(--brand-blue) 12%, transparent)" : "color-mix(in oklab, var(--brand-orange) 12%, transparent)" }}>
+                    <b.icon className="h-6 w-6" style={{ color: i % 2 === 0 ? "var(--brand-blue)" : "var(--brand-orange)" }} />
+                  </div>
+                  <h3 className="mt-5 text-lg font-semibold">{b.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.desc}</p>
+                </div>
               </div>
-              <h3 className="mt-5 text-lg font-semibold">{b.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{b.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -270,8 +307,8 @@ function HowItWorks() {
     { n: "03", icon: FileCheck, title: "Genera reportes", desc: "Descarga PDFs con validez legal listos para enviar a tus clientes o auditorías." },
   ];
   return (
-    <section id="como-funciona" className="relative bg-ink py-24 text-background sm:py-32" style={{ color: "oklch(0.98 0 0)" }}>
-      <div className="absolute inset-0 opacity-[0.07]" style={{ background: "radial-gradient(circle at 30% 0%, var(--brand-blue), transparent 50%), radial-gradient(circle at 70% 100%, var(--brand-orange), transparent 50%)" }} />
+    <section id="como-funciona" className="relative bg-ink py-24 text-background sm:py-32 overflow-hidden" style={{ color: "oklch(0.98 0 0)" }}>
+      <div className="absolute inset-0 opacity-[0.07] animate-blob" style={{ background: "radial-gradient(circle at 30% 0%, var(--brand-blue), transparent 50%), radial-gradient(circle at 70% 100%, var(--brand-orange), transparent 50%)" }} />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6">
         <div className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--brand-orange)" }}>Cómo funciona</span>
@@ -281,12 +318,18 @@ function HowItWorks() {
         </div>
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {steps.map((s, i) => (
-            <div key={i} className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur">
-              <div className="font-display text-6xl font-bold" style={{ color: "color-mix(in oklab, var(--brand-orange) 80%, transparent)" }}>{s.n}</div>
-              <s.icon className="mt-6 h-7 w-7" style={{ color: "var(--brand-blue)" }} />
-              <h3 className="mt-4 text-xl font-semibold">{s.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/70">{s.desc}</p>
-            </div>
+            <Reveal key={i} delay={i * 120}>
+              <div className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur transition-all duration-500 hover:-translate-y-2 hover:border-white/25 hover:bg-white/[0.06]">
+                <div className="absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-60"
+                  style={{ background: i === 1 ? "var(--brand-blue)" : "var(--brand-orange)" }} />
+                <div className="relative">
+                  <div className="font-display text-6xl font-bold transition-transform duration-500 group-hover:scale-110 group-hover:-translate-y-1" style={{ color: "color-mix(in oklab, var(--brand-orange) 80%, transparent)" }}>{s.n}</div>
+                  <s.icon className="mt-6 h-7 w-7 transition-transform duration-500 group-hover:rotate-12" style={{ color: "var(--brand-blue)" }} />
+                  <h3 className="mt-4 text-xl font-semibold">{s.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/70">{s.desc}</p>
+                </div>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -316,17 +359,21 @@ function Mockups() {
         </div>
         <div className="mt-14 grid gap-8 lg:grid-cols-3">
           {shots.map((s, i) => (
-            <div key={i} className="group">
-              <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 transition-all group-hover:-translate-y-1">
-                <div
-                  className="absolute inset-x-8 top-8 h-40 rounded-2xl opacity-60 blur-2xl"
-                  style={{ background: i === 1 ? "color-mix(in oklab, var(--brand-blue) 40%, transparent)" : "color-mix(in oklab, var(--brand-orange) 35%, transparent)" }}
-                />
-                <PhoneFrame src={s.src} />
+            <Reveal key={i} delay={i * 120}>
+              <div className="group">
+                <div className="tilt-hover relative overflow-hidden rounded-3xl border border-border bg-surface p-8">
+                  <div
+                    className="absolute inset-x-8 top-8 h-40 rounded-2xl opacity-60 blur-2xl animate-blob"
+                    style={{ background: i === 1 ? "color-mix(in oklab, var(--brand-blue) 40%, transparent)" : "color-mix(in oklab, var(--brand-orange) 35%, transparent)", animationDelay: `${-i * 4}s` }}
+                  />
+                  <div className="relative animate-float-slow" style={{ animationDelay: `${-i * 2}s` }}>
+                    <PhoneFrame src={s.src} />
+                  </div>
+                </div>
+                <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
               </div>
-              <h3 className="mt-5 text-lg font-semibold">{s.title}</h3>
-              <p className="mt-1 text-sm text-muted-foreground">{s.desc}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -366,29 +413,31 @@ function Testimonials() {
         </div>
         <div className="mt-14 grid gap-6 md:grid-cols-3">
           {quotes.map((t, i) => (
-            <figure key={i} className="flex flex-col justify-between rounded-3xl border border-border bg-card p-8 shadow-sm">
-              <div>
-                <div className="flex items-center gap-0.5" aria-label="5 de 5 estrellas">
-                  {Array.from({ length: 5 }).map((_, s) => (
-                    <Star key={s} className="h-4 w-4 fill-current" style={{ color: "var(--brand-orange)" }} />
-                  ))}
-                </div>
-                <blockquote className="mt-4 text-base leading-relaxed text-foreground/90">
-                  <span className="text-foreground">"</span>
-                  {t.q}
-                  <span className="text-foreground">"</span>
-                </blockquote>
-              </div>
-              <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                <div className="grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white" style={{ background: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
-                  {t.a[0]}
-                </div>
+            <Reveal key={i} delay={i * 100}>
+              <figure className="group flex h-full flex-col justify-between rounded-3xl border border-border bg-card p-8 shadow-sm transition-all duration-500 hover:-translate-y-2 hover:border-foreground/25 hover:shadow-2xl">
                 <div>
-                  <div className="text-sm font-semibold">{t.a}</div>
-                  <div className="text-xs text-muted-foreground">{t.role}</div>
+                  <div className="flex items-center gap-0.5" aria-label="5 de 5 estrellas">
+                    {Array.from({ length: 5 }).map((_, s) => (
+                      <Star key={s} className="h-4 w-4 fill-current transition-transform duration-500 group-hover:scale-110" style={{ color: "var(--brand-orange)", transitionDelay: `${s * 40}ms` }} />
+                    ))}
+                  </div>
+                  <blockquote className="mt-4 text-base leading-relaxed text-foreground/90">
+                    <span className="text-foreground">"</span>
+                    {t.q}
+                    <span className="text-foreground">"</span>
+                  </blockquote>
                 </div>
-              </figcaption>
-            </figure>
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+                  <div className="grid h-10 w-10 place-items-center rounded-full text-sm font-bold text-white transition-transform duration-500 group-hover:scale-110" style={{ background: t.accent === "orange" ? "var(--brand-orange)" : "var(--brand-blue)" }}>
+                    {t.a[0]}
+                  </div>
+                  <div>
+                    <div className="text-sm font-semibold">{t.a}</div>
+                    <div className="text-xs text-muted-foreground">{t.role}</div>
+                  </div>
+                </figcaption>
+              </figure>
+            </Reveal>
           ))}
         </div>
       </div>
@@ -416,10 +465,14 @@ function Pricing() {
         </div>
 
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
-          {plans.slice(0, 3).map((p) => <PlanCard key={p.name} p={p} />)}
+          {plans.slice(0, 3).map((p, i) => (
+            <Reveal key={p.name} delay={i * 90}><PlanCard p={p} /></Reveal>
+          ))}
         </div>
         <div className="mt-5 grid gap-5 lg:grid-cols-2">
-          {plans.slice(3).map((p) => <PlanCard key={p.name} p={p} />)}
+          {plans.slice(3).map((p, i) => (
+            <Reveal key={p.name} delay={i * 90}><PlanCard p={p} /></Reveal>
+          ))}
         </div>
       </div>
     </section>
@@ -428,10 +481,10 @@ function Pricing() {
 
 function PlanCard({ p }: { p: { name: string; price: string; period: string; desc: string; features: string[]; cta: string; icon: typeof Shield; popular?: boolean } }) {
   return (
-    <div className={`relative flex flex-col rounded-3xl border bg-card p-8 transition-all hover:-translate-y-1 ${p.popular ? "border-transparent shadow-2xl" : "border-border"}`}
+    <div className={`group relative flex h-full flex-col rounded-3xl border bg-card p-8 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${p.popular ? "border-transparent shadow-2xl" : "border-border hover:border-foreground/25"}`}
       style={p.popular ? { boxShadow: "0 0 0 2px var(--brand-orange), 0 30px 60px -20px color-mix(in oklab, var(--brand-orange) 40%, transparent)" } : undefined}>
       {p.popular && (
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white" style={{ background: "var(--brand-orange)" }}>
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2 animate-pulse-ring rounded-full px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white" style={{ background: "var(--brand-orange)" }}>
           Más popular
         </div>
       )}
@@ -501,9 +554,9 @@ function CTA() {
     <section className="relative overflow-hidden py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-4 sm:px-6">
         <div className="relative overflow-hidden rounded-3xl bg-ink p-10 text-center sm:p-16" style={{ color: "oklch(0.98 0 0)" }}>
-          <div className="absolute inset-0 opacity-30" style={{ background: "radial-gradient(circle at 20% 30%, var(--brand-blue), transparent 50%), radial-gradient(circle at 80% 70%, var(--brand-orange), transparent 50%)" }} />
+          <div className="absolute inset-0 opacity-40 animate-blob" style={{ background: "radial-gradient(circle at 20% 30%, var(--brand-blue), transparent 50%), radial-gradient(circle at 80% 70%, var(--brand-orange), transparent 50%)" }} />
           <div className="relative">
-            <Lock className="mx-auto h-10 w-10" style={{ color: "var(--brand-orange)" }} />
+            <Lock className="mx-auto h-10 w-10 animate-float" style={{ color: "var(--brand-orange)" }} />
             <h2 className="mt-5 text-balance font-display text-4xl font-bold tracking-tight sm:text-5xl">
               Tranquilidad y protección,<br /><span className="gradient-text">en tu bolsillo.</span>
             </h2>
@@ -612,7 +665,7 @@ function FloatingWhatsApp() {
       rel="noopener noreferrer"
       onClick={() => trackPixel("Lead", { content_name: "WhatsApp flotante" })}
       aria-label="Contactar por WhatsApp"
-      className="fixed bottom-20 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-transform hover:scale-110 active:scale-95 md:bottom-5"
+      className="fixed bottom-20 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-[0_8px_24px_rgba(0,0,0,0.25)] transition-transform hover:scale-110 active:scale-95 md:bottom-5 animate-pulse-ring"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
