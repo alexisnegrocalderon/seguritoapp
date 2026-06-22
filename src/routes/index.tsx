@@ -650,16 +650,16 @@ function FooterCol({ title, links }: { title: string; links: string[] }) {
 }
 
 function FloatingCTA() {
+  const platform = usePlatformModal();
   return (
     <div className="fixed bottom-5 left-1/2 z-50 w-[280px] -translate-x-1/2 md:hidden">
-      <a
-        href="https://seguritoapp-467657972843.southamerica-west1.run.app/"
-        target="_blank"
-        rel="noopener noreferrer"
+      <button
+        type="button"
+        onClick={() => platform.open("floating-cta")}
         className="flex w-full items-center justify-center rounded-full border-0 bg-[var(--brand-orange)]/85 py-3.5 text-sm font-bold text-white shadow-[0_8px_24px_rgba(0,0,0,0.2)] backdrop-blur-lg transition-transform hover:scale-[1.03] active:scale-[0.98]"
       >
         Empezar gratis
-      </a>
+      </button>
     </div>
   );
 }
