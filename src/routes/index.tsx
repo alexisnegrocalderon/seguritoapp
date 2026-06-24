@@ -231,6 +231,17 @@ function PlayStoreIcon() {
   );
 }
 
+function ChileFlag({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 24" className={className} aria-hidden>
+      <rect width="32" height="12" fill="#fff" />
+      <rect y="12" width="32" height="12" fill="#d52b1e" />
+      <path fill="#0039a6" d="M0 0h12v24H0z" />
+      <path fill="#fff" d="M6 4.2l1.5 4.7-4-2.9h5l-4 2.9z" />
+    </svg>
+  );
+}
+
 function Logos() {
   const items = ["DS 44", "DS 67", "DS 594", "ley 16.744", "protocolos MINSAL"];
   const loop = [...items, ...items];
