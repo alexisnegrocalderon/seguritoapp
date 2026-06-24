@@ -237,7 +237,7 @@ function ChileFlag({ className }: { className?: string }) {
       <rect width="32" height="10" fill="#fff" />
       <rect y="10" width="32" height="10" fill="#d52b1e" />
       <path fill="#0039a6" d="M0 0h11v11H0z" />
-      <path fill="#fff" d="M5.5 2.5l1.5 4.5 4.5-1.5-3.6 3.6 1.5 4.5-3.6-3.6-3.6 3.6 1.5-4.5-3.6-3.6 4.5 1.5z" />
+      <path fill="#fff" d="M5.5 2.2L6.32 4.37L8.64 4.48L6.83 5.93L7.44 8.17L5.5 6.9L3.56 8.17L4.17 5.93L2.36 4.48L4.68 4.37z" />
     </svg>
   );
 }
