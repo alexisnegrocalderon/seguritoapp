@@ -233,11 +233,11 @@ function PlayStoreIcon() {
 
 function ChileFlag({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 32 24" className={className} aria-hidden>
-      <rect width="32" height="12" fill="#fff" />
-      <rect y="12" width="32" height="12" fill="#d52b1e" />
-      <path fill="#0039a6" d="M0 0h12v24H0z" />
-      <path fill="#fff" d="M6 5.5l1.2 3.6 3.6-1.2-2.9 2.4 1.2 3.6-2.4-2.9-2.4 2.9 1.2-3.6-2.9-2.4 3.6 1.2z" />
+    <svg viewBox="0 0 32 20" className={className} aria-hidden>
+      <rect width="32" height="10" fill="#fff" />
+      <rect y="10" width="32" height="10" fill="#d52b1e" />
+      <path fill="#0039a6" d="M0 0h11v11H0z" />
+      <path fill="#fff" d="M5.5 2.5l1.5 4.5 4.5-1.5-3.6 3.6 1.5 4.5-3.6-3.6-3.6 3.6 1.5-4.5-3.6-3.6 4.5 1.5z" />
     </svg>
   );
 }
