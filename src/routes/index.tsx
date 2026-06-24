@@ -128,10 +128,10 @@ function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 pt-16 pb-20 sm:px-6 sm:pt-24 lg:pt-32">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr]">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-3 py-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground backdrop-blur animate-pulse-ring">
-              <span className="relative flex h-2 w-2">
+            <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 text-sm font-semibold uppercase tracking-wider text-muted-foreground backdrop-blur animate-pulse-ring">
+              <span className="relative flex h-2.5 w-2.5">
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-75" style={{ background: "var(--brand-orange)" }} />
-                <span className="relative inline-flex h-2 w-2 rounded-full" style={{ background: "var(--brand-orange)" }} />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full" style={{ background: "var(--brand-orange)" }} />
               </span>
               Prevención de riesgos · D.S. 44
             </div>
@@ -163,9 +163,8 @@ function Hero() {
               </a>
             </div>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> 7 días gratis</div>
-              <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> Sin tarjeta</div>
-              <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> Soporte en español</div>
+              <div className="flex items-center gap-2"><Check className="h-4 w-4" style={{ color: "var(--brand-orange)" }} /> 7 días gratis sin tarjeta</div>
+              <div className="flex items-center gap-2"><ChileFlag className="h-4 w-4" /> Soporte en Chile</div>
             </div>
           </div>
 
@@ -228,6 +227,17 @@ function PlayStoreIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-6 w-6 fill-current" aria-hidden>
       <path d="M3.6 2.3c-.3.3-.5.8-.5 1.4v16.6c0 .6.2 1.1.5 1.4l9.3-9.4-9.3-10zM14.3 13l2.6 2.6-10.7 6.1 8.1-8.7zM18.8 10.4l-2.4-1.4-2.7 2.7L16.4 14l2.4-1.4c.9-.5.9-1.7 0-2.2zM6.2 2.2L16.9 8.4l-2.6 2.7-8.1-8.9z"/>
+    </svg>
+  );
+}
+
+function ChileFlag({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 32 24" className={className} aria-hidden>
+      <rect width="32" height="12" fill="#fff" />
+      <rect y="12" width="32" height="12" fill="#d52b1e" />
+      <path fill="#0039a6" d="M0 0h12v24H0z" />
+      <path fill="#fff" d="M6 5.5l1.2 3.6 3.6-1.2-2.9 2.4 1.2 3.6-2.4-2.9-2.4 2.9 1.2-3.6-2.9-2.4 3.6 1.2z" />
     </svg>
   );
 }
