@@ -1,38 +1,16 @@
-# Eliminar modal integrado y restaurar apertura externa
+Modificar la sección Hero de la landing para ajustar los objetos flotantes del mockup del celular.
 
-## Objetivo
-Quitar el iframe/modal full-screen que carga la plataforma dentro del sitio y volver a abrir SeguritoApp en una pestaña del navegador nueva. Esto evita problemas con pasarelas de pago, sesiones de autenticación y bases de datos que ocurren cuando los usuarios usan la app desde un iframe.
+Cambios a realizar en `src/routes/index.tsx`:
 
-## Cambios técnicos
+1. Actualizar el objeto flotante izquierdo (live metric pill) que actualmente dice "Cumplimiento 98%":
+   - Cambiar la etiqueta "Cumplimiento" por "Carta Gantt".
+   - Mantener el valor "98%" pero en color verde.
 
-### 1. Eliminar componente del modal
-- Borrar `src/components/PlatformModal.tsx` (provider, hook, contexto e iframe).
+2. Acercar los tres objetos flotantes al teléfono:
+   - Objeto inferior izquierdo (Alerta temprana / Inspección en 3 días): reducir la separación actual `-bottom-4 -left-4` para que quede más pegado al borde del celular.
+   - Objeto superior derecho (Reporte listo / DIEP / DIAT): reducir la separación actual `-top-3 -right-3` para acercarlo al teléfono.
+   - Objeto izquierdo medio (Carta Gantt / 98%): reducir la separación horizontal actual `-left-10` para que quede más cerca del mockup.
 
-### 2. Revertir `src/routes/index.tsx`
-- Quitar el import de `PlatformModalProvider` y `usePlatformModal`.
-- Quitar el wrapper `<PlatformModalProvider>` alrededor del JSX de `Landing`.
-- Reemplazar cada `button` que hoy llama a `platform.open(location)` por un `<a>` que apunte a:
-  - `https://seguritoapp-467657972843.southamerica-west1.run.app/`
-  - `target="_blank"`
-  - `rel="noopener noreferrer"`
-- Conservar el tracking de Meta Pixel (`trackPixelCustom`) donde ya existía mediante `onClick`.
-- Lugares a cambiar:
-  - Nav desktop: "Empezar gratis"
-  - Nav móvil: "Empezar gratis"
-  - Hero: botón App Store
-  - Hero: botón Google Play
-  - Tarjetas de planes: botón de cada plan
-  - CTA final: botón App Store
-  - CTA final: botón Google Play
-  - Botón flotante móvil: "Empezar gratis"
-- Los enlaces de Instagram y WhatsApp permanecen sin cambios.
+3. En `src/styles.css` agregar una variable semántica de color verde (por ejemplo `--success`) para aplicar el 98% sin romper el sistema de tokens, y usarla en el Hero.
 
-### 3. Actualizar `.lovable/plan.md`
-- Reemplazar el plan anterior del modal embebido por la nueva decisión: la plataforma se abre en pestaña externa.
-
-### 4. Verificación de limpieza
-- Revisar que no queden referencias a `PlatformModal`, `usePlatformModal` ni `PLATFORM_URL` en el repositorio.
-
-## Verificación final
-- Ejecutar el build de desarrollo para confirmar que no hay errores de import ni de sintaxis.
-- Revisar visualmente que los CTAs sean enlaces que abran la plataforma en una pestaña nueva y que el modal no se renderice.
+Verificación: revisar visualmente en el preview que los tres objetos flotantes queden más próximos al celular y que el texto "Carta Gantt" con "98%" verde se lea correctamente.
