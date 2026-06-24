@@ -1,43 +1,38 @@
-# Integrar la plataforma dentro del sitio (modal embebido)
+# Eliminar modal integrado y restaurar apertura externa
 
 ## Objetivo
-Cuando el usuario haga click en "Comenzar" o en cualquier botón que hoy lleva a `https://seguritoapp-467657972843.southamerica-west1.run.app/`, en vez de abrir una pestaña nueva, se abrirá un **modal full-screen** dentro del sitio con la plataforma cargada en un `<iframe>`. Verifiqué los headers del dominio y no envía `X-Frame-Options` ni `frame-ancestors`, así que se puede embeber sin problema.
-
-## UX / Diseño (kinético oscuro, alineado a la marca)
-- Overlay full-screen con fondo `bg-background/95` + `backdrop-blur-xl` y borde superior con gradiente naranja→azul (glow sutil).
-- Barra superior compacta con:
-  - Logo + nombre "Securito App"
-  - Píldora con el host de la plataforma + indicador "● Conectado" (punto verde pulsante)
-  - Botones: "Abrir en pestaña nueva" (icono `ExternalLink`) y "Cerrar" (icono `X`)
-- Estado de carga: skeleton con shimmer + texto "Cargando plataforma segura…" mientras el iframe dispara `onLoad`.
-- Animación de entrada: scale + fade (`animate-in zoom-in-95 fade-in`), cierre con `Esc` y click en backdrop.
-- Body lock scroll cuando esté abierto.
-- Responsive: en móvil ocupa 100vh/100vw, en desktop deja 16px de margen con bordes redondeados y `shadow-elegant`.
+Quitar el iframe/modal full-screen que carga la plataforma dentro del sitio y volver a abrir SeguritoApp en una pestaña del navegador nueva. Esto evita problemas con pasarelas de pago, sesiones de autenticación y bases de datos que ocurren cuando los usuarios usan la app desde un iframe.
 
 ## Cambios técnicos
-1. **Nuevo componente** `src/components/PlatformModal.tsx`
-   - Usa `Dialog` de shadcn (`src/components/ui/dialog.tsx`) en modo full-screen custom.
-   - Props: `open`, `onOpenChange`, `url` (default = URL de la plataforma).
-   - Render: barra superior + `<iframe src={url} className="h-full w-full" allow="clipboard-read; clipboard-write; camera; microphone; geolocation" />` + estado `loading`.
-   - Trackea pixel `PlatformOpen` al abrirse (mismo `trackPixelCustom` ya usado).
 
-2. **Hook ligero** `usePlatformModal` (o contexto simple en `index.tsx`) con `const [platformOpen, setPlatformOpen] = useState(false)` para abrir desde cualquier botón.
+### 1. Eliminar componente del modal
+- Borrar `src/components/PlatformModal.tsx` (provider, hook, contexto e iframe).
 
-3. **Reemplazar los `<a href="…run.app/">`** en `src/routes/index.tsx` por `<button onClick={() => setPlatformOpen(true)}>` conservando estilos y tracking. Lugares:
-   - Nav desktop (línea 81) y menú móvil (línea 100)
-   - Hero: botones AppStore y GooglePlay (líneas 149, 156)
-   - Tarjetas de planes (línea 512)
-   - CTA final (líneas 567, 574)
-   - Botón sticky inferior (línea 649)
-   - El de WhatsApp (línea 663) y el de Instagram **no** cambian.
+### 2. Revertir `src/routes/index.tsx`
+- Quitar el import de `PlatformModalProvider` y `usePlatformModal`.
+- Quitar el wrapper `<PlatformModalProvider>` alrededor del JSX de `Landing`.
+- Reemplazar cada `button` que hoy llama a `platform.open(location)` por un `<a>` que apunte a:
+  - `https://seguritoapp-467657972843.southamerica-west1.run.app/`
+  - `target="_blank"`
+  - `rel="noopener noreferrer"`
+- Conservar el tracking de Meta Pixel (`trackPixelCustom`) donde ya existía mediante `onClick`.
+- Lugares a cambiar:
+  - Nav desktop: "Empezar gratis"
+  - Nav móvil: "Empezar gratis"
+  - Hero: botón App Store
+  - Hero: botón Google Play
+  - Tarjetas de planes: botón de cada plan
+  - CTA final: botón App Store
+  - CTA final: botón Google Play
+  - Botón flotante móvil: "Empezar gratis"
+- Los enlaces de Instagram y WhatsApp permanecen sin cambios.
 
-4. **Montar `<PlatformModal />`** una sola vez al final del árbol de `IndexPage`.
+### 3. Actualizar `.lovable/plan.md`
+- Reemplazar el plan anterior del modal embebido por la nueva decisión: la plataforma se abre en pestaña externa.
 
-## Detalles técnicos
-- El iframe no necesita configuración del backend (no hay X-Frame-Options).
-- Botón "Abrir en pestaña nueva" como fallback por si el usuario quiere pantalla completa real o si algún flujo (ej. OAuth) requiere top-level navigation.
-- `sandbox` del iframe: **no** se aplica para no romper auth/cookies de la plataforma.
-- Sin cambios de copy ni de contenido — solo comportamiento de los CTAs y un componente nuevo.
+### 4. Verificación de limpieza
+- Revisar que no queden referencias a `PlatformModal`, `usePlatformModal` ni `PLATFORM_URL` en el repositorio.
 
-## Verificación
-- Playwright: abrir `/`, clickear "Comenzar", screenshot del modal con iframe cargado, confirmar que la URL del sitio sigue siendo `/` (no navegó fuera), cerrar con Esc, confirmar que el modal desaparece.
+## Verificación final
+- Ejecutar el build de desarrollo para confirmar que no hay errores de import ni de sintaxis.
+- Revisar visualmente que los CTAs sean enlaces que abran la plataforma en una pestaña nueva y que el modal no se renderice.
