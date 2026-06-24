@@ -236,8 +236,8 @@ function ChileFlag({ className }: { className?: string }) {
     <svg viewBox="0 0 32 20" className={className} aria-hidden>
       <rect width="32" height="10" fill="#fff" />
       <rect y="10" width="32" height="10" fill="#d52b1e" />
-      <path fill="#0039a6" d="M0 0h11v11H0z" />
-      <path fill="#fff" d="M5.5 2.2L6.32 4.37L8.64 4.48L6.83 5.93L7.44 8.17L5.5 6.9L3.56 8.17L4.17 5.93L2.36 4.48L4.68 4.37z" />
+      <path fill="#0039a6" d="M0 0h10v10H0z" />
+      <path fill="#fff" d="M5 2L6.18 4.8 9.24 5.13 6.82 7.05 7.53 10L5 8.2L2.47 10L3.18 7.05L0.76 5.13L3.82 4.8z" />
     </svg>
   );
 }
