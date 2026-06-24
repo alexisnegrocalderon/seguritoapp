@@ -177,7 +177,7 @@ function Hero() {
             <div className="relative animate-float-slow">
               <PhoneFrame src={dashboard.url} />
             </div>
-            <div className="absolute -bottom-4 -left-4 hidden rounded-2xl border border-border bg-card/90 p-3 shadow-xl backdrop-blur sm:flex sm:items-center sm:gap-3 animate-float" style={{ animationDelay: "-2s" }}>
+            <div className="absolute bottom-2 -left-2 hidden rounded-2xl border border-border bg-card/90 p-3 shadow-xl backdrop-blur sm:flex sm:items-center sm:gap-3 animate-float" style={{ animationDelay: "-2s" }}>
               <div className="grid h-10 w-10 place-items-center rounded-xl" style={{ background: "color-mix(in oklab, var(--brand-orange) 15%, transparent)" }}>
                 <Bell className="h-5 w-5" style={{ color: "var(--brand-orange)" }} />
               </div>
@@ -186,7 +186,7 @@ function Hero() {
                 <div className="text-sm font-semibold">Inspección en 3 días</div>
               </div>
             </div>
-            <div className="absolute -top-3 -right-3 hidden rounded-2xl border border-border bg-card/90 p-3 shadow-xl backdrop-blur sm:flex sm:items-center sm:gap-3 animate-float" style={{ animationDelay: "-4s" }}>
+            <div className="absolute top-2 -right-1 hidden rounded-2xl border border-border bg-card/90 p-3 shadow-xl backdrop-blur sm:flex sm:items-center sm:gap-3 animate-float" style={{ animationDelay: "-4s" }}>
               <div className="grid h-10 w-10 place-items-center rounded-xl" style={{ background: "color-mix(in oklab, var(--brand-blue) 15%, transparent)" }}>
                 <FileCheck className="h-5 w-5" style={{ color: "var(--brand-blue)" }} />
               </div>
@@ -196,13 +196,14 @@ function Hero() {
               </div>
             </div>
             {/* Live metric pill */}
-            <div className="absolute top-1/2 -left-10 hidden -translate-y-1/2 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-xl backdrop-blur md:block animate-drift">
-              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Cumplimiento</div>
-              <div className="font-display text-2xl font-bold" style={{ color: "var(--brand-blue)" }}>98%</div>
+            <div className="absolute top-1/2 -left-3 hidden -translate-y-1/2 rounded-2xl border border-border bg-card/90 px-4 py-3 shadow-xl backdrop-blur md:block animate-drift">
+              <div className="text-[10px] uppercase tracking-wider text-muted-foreground">Carta Gantt</div>
+              <div className="font-display text-2xl font-bold" style={{ color: "oklch(0.75 0.18 145)" }}>98%</div>
               <div className="mt-1 h-1.5 w-24 overflow-hidden rounded-full bg-white/10">
-                <div className="h-full w-[98%] rounded-full" style={{ background: "var(--brand-blue)" }} />
+                <div className="h-full w-[98%] rounded-full" style={{ background: "oklch(0.75 0.18 145)" }} />
               </div>
             </div>
+
           </div>
         </div>
       </div>
