@@ -7,10 +7,14 @@ import {
   Zap, Award, Building2, Star,
 
 } from "lucide-react";
-import logo from "@/assets/logo.asset.json";
-import dashboard from "@/assets/app-dashboard.asset.json";
-import menu from "@/assets/app-menu.asset.json";
-import diep from "@/assets/app-diep.asset.json";
+import logoUrl from "@/assets/logo.png";
+import dashboardUrl from "@/assets/app-dashboard.jpeg";
+import menuUrl from "@/assets/app-menu.jpeg";
+import diepUrl from "@/assets/app-diep.jpeg";
+const logo = { url: logoUrl };
+const dashboard = { url: dashboardUrl };
+const menu = { url: menuUrl };
+const diep = { url: diepUrl };
 import { trackPixel, trackPixelCustom } from "@/lib/meta-pixel";
 import { Reveal } from "@/components/Reveal";
 const PLATFORM_URL = "https://seguritoapp-467657972843.southamerica-west1.run.app/";
